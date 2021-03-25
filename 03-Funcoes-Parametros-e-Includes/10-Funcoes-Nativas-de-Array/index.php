@@ -46,4 +46,63 @@
 
     print_r($dobro);
 
+    //remove o ultimo item da lista;
+
+    array_pop($numeros);
+
+    print_r($numeros);
+
+    echo "<br><br>";
+
+    //remove o primeiro item da lista
+
+    array_shift($numeros);
+
+    print_r($numeros);
+
+    echo "<br><br>";
+
+    //verifica se existe elemento da lista
+
+    echo (in_array(29,$numeros))?"EXISTE":"NAO EXISTE";
+
+    echo "<br><br>";
+
+    //verifica se existe e traz a chave do valor
+
+    echo array_search(29,$numeros);
+
+    echo "<br><br>";
+
+    //organiza em ordem alfabetica ou numerica
+
+    sort($numeros);
+
+    print_r($numeros);
+
+    echo "<br><br>";
+
+    //organiza em ordem descresente
+
+    rsort($numeros);
+
+    print_r($numeros);
+
+    echo "<br><br>";
+
+    //organiza em ordem alfabetica ou numerica sem alterar a chave
+
+    asort($numeros);
+
+    print_r($numeros);
+
+    echo "<br><br>";
+
+    //transforma array em string
+
+    $nome = ["Jose","Cris","Neto"];
+
+    $nome = implode(' ',$nome);
+
+    echo $nome;
 ?>
