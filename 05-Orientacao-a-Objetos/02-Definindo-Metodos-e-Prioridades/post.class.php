@@ -1,8 +1,8 @@
 <?php
     class Post{
-        public $likes;
-        public $comentarios;
-        public $autor;
+        public int $likes;
+        public string $comentarios;
+        public string $autor;
         
         public function aumentarLike(){
             $this->likes++;

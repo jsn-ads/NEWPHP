@@ -29,5 +29,11 @@
             <?php echo $b->likes;?>
         </p>
     </div>
+
+    <div>
+        <p>POST 2 : 
+            <?php echo phpversion();?>
+        </p>
+    </div>
 </body>
 </html>
