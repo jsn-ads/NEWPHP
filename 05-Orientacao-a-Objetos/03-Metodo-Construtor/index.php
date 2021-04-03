@@ -1,11 +1,11 @@
 <?php
     require ('post.class.php');
 
-    $a = new Post();
+    $a = new Post(1);
     $a->likes = 9;
     $a->aumentarLike();
     $a->aumentarLike();
-    $b = new Post();
+    $b = new Post(2);
     $b->likes = 17;
     $b->aumentarLike();
 ?>
@@ -27,12 +27,6 @@
     <div>
         <p>POST 2 : 
             <?php echo $b->likes;?>
-        </p>
-    </div>
-
-    <div>
-        <p>POST 2 : 
-            <?php echo phpversion();?>
         </p>
     </div>
 </body>
