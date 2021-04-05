@@ -12,8 +12,8 @@
 
 -user_relations
     id
-    following
-    followers
+    user_from   
+    user_to
 -posts
     id
     type(text/photo)
