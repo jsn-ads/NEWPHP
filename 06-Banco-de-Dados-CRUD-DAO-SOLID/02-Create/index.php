@@ -34,7 +34,7 @@
             <th><?= $usuario['email'];?></th>
             <th>
                 <button><a href="editar.php?id=<?= $usuario['id'];?>" style="text-decoration: none;">Editar</a></button>
-                <button><a href="excluir.php?id=<?= $usuario['id']?>" style="text-decoration: none;">Excluir</a></button>
+                <button><a href="excluir.php?id=<?= $usuario['id']?>" style="text-decoration: none;" onclick="return confirm('Tem certeza de deseja excluir ?')">Excluir</a></button>
             </th>
         </tr>
         <?php endforeach;?>
