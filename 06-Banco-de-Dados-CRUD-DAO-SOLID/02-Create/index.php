@@ -1,5 +1,12 @@
 <?php
     require 'config.php';
+
+    $lista = array();
+
+    $sql = $pdo->query("SELECT * FROM usuario");
+
+    ($sql->rowCount() > 0)? $lista = $sql->fetchAll(PDO::FETCH_ASSOC):""; 
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +27,18 @@
             <th>EMAIL</th>
             <th>ACOES</th>
         </tr>
+        <?php foreach($lista as $usuario):?>
+        <tr>
+            <th><?= $usuario['id'];?></th>
+            <th><?= $usuario['nome'];?></th>
+            <th><?= $usuario['email'];?></th>
+            <th>
+                <button><a href="editar.php?id=<?= $usuario['id'];?>" style="text-decoration: none;">Editar</a></button>
+                <button><a href="excluir.php?id=<?= $usuario['id']?>" style="text-decoration: none;">Excluir</a></button>
+            </th>
+        </tr>
+        <?php endforeach;?>
+        
     </table>
 
 </body>
