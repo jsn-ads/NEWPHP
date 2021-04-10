@@ -1,0 +1,33 @@
+-user
+    id
+    email
+    password
+    name
+    birth_date
+    city
+    work
+    avatar
+    cover
+    token
+
+-user_relations
+    id
+    user_from   
+    user_to
+-posts
+    id
+    type(text/photo)
+    created_at
+    body
+
+-post_comments
+    id
+    id_post
+    id_user
+    created_at
+    body
+
+-post_likes
+    id
+    id_post
+    id_user
