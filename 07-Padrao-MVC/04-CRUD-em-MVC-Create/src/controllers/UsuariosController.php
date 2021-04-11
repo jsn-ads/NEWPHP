@@ -33,5 +33,44 @@
             $this->redirect('/adicionarUsuario');
         }
 
+        public function edit($args){
+
+            $usuario = Usuario::select()->find($args['id']);
+
+            $this->render('editarUsuario',[
+                'usuario' => $usuario
+            ]);
+
+        }  
+        
+        public function editAction($args){
+
+            $nome = filter_input(INPUT_POST,'nome');
+            $email = filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL);
+
+            if($nome && $email){
+                
+                Usuario::update()
+                ->set('nome',$nome)
+                ->set('email',$email)
+                ->where('id',$args['id'])
+                ->execute();
+
+                $this->redirect('/');
+
+            }
+
+            $this->redirect('/EditarUsuario/'.$args['id']);
+
+        }
+
+        public function del($args){
+            Usuario::delete()
+            ->where('id',$args['id'])
+            ->execute();
+            
+            $this->redirect('/');
+        }
+
     }
 ?>
