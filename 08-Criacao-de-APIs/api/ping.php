@@ -2,7 +2,7 @@
     require('../config.php');
 
     $array['result'] = [
-        'pong' => true
+        'pong' => true     
     ];
 
     require('../return.php');
