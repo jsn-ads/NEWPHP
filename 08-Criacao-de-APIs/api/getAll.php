@@ -17,11 +17,10 @@
                     'title' => $item['title']
                 ];
             }
-        }else{
-            $array['error'] = 'Método não permitido (Apenas GET)';
         }
-
-      
+        
+    }else{
+        $array['error'] = 'Método não permitido (Apenas GET)';
     }
 
     require('../return.php');

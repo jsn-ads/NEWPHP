@@ -27,11 +27,10 @@
             }else{
                $array['error'] = 'Post nao encontrado';
             }
+        }
 
-        }else{
-            $array['error'] = 'Id nao encontrado';
-       }
-
+    }else{
+        $array['error'] = 'Id nao encontrado';
     }
 
     require('../return.php');
