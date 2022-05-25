@@ -1,0 +1,33 @@
+-user
+    id              int
+    email           varchar 100
+    password        varchar 200
+    name            varchar 100
+    birth_date      date 
+    city            varchar 100 
+    work            varchar 100
+    avatar          varchar 100
+    cover           varchar 100
+    token           varchar 200
+
+-user_relations
+    id              int
+    user_from       int
+    user_to         int
+-posts
+    id                  int
+    type(text/photo)    varchar 20
+    created_at          datetime
+    body                text
+
+-post_comments
+    id                  int
+    id_post             int
+    id_user             int
+    created_at          datetime    
+    body                text 
+
+-post_likes
+    id                  int
+    id_post             int
+    id_user             int
