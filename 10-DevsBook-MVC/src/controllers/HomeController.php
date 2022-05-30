@@ -9,7 +9,7 @@ class HomeController extends Controller {
 
     public function __construct()
     {
-        
+        $this->redirect('/login');
     }
 
     public function index() {
