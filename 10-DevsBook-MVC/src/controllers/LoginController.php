@@ -1,6 +1,7 @@
 <?php
 namespace src\controllers;
 
+use ClanCats\Hydrahon\Query\Sql\Func;
 use \core\Controller;
 use \helpes\LoginHelpers;
 use src\helpers\LoginHelpers as HelpersLoginHelpers;
@@ -18,7 +19,7 @@ class LoginController extends Controller {
             $_SESSION['flash'] = '';
         }
 
-        $this->render('login',['flash' => $flash]);
+        $this->render('signin',['flash' => $flash]);
     }
 
     public function signinAction()
@@ -52,6 +53,10 @@ class LoginController extends Controller {
 
     public function signup()
     {
-        echo "Cadastro";
+        $this->render('signup');
+    }
+
+    public function signupAction(){
+        echo 'bem vindo';
     }
 }
