@@ -2,6 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
+use src\helpers\LoginHelpers;
 
 class HomeController extends Controller {
 
@@ -9,7 +10,13 @@ class HomeController extends Controller {
 
     public function __construct()
     {
-        $this->redirect('/login');
+
+        $loggedUser = LoginHelpers::checkLogin();
+
+        if($loggedUser === false)
+        {
+            $this->redirect('/login');
+        }
     }
 
     public function index() {
