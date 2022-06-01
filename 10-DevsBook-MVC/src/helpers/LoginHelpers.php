@@ -28,7 +28,7 @@
                     $loggedUser->id         =   $sql['id'];
                     $loggedUser->email      =   $sql['email'];
                     $loggedUser->nome       =   $sql['nome'];
-                    $loggedUser->birth_date =   $sql['brth_date'];
+                    $loggedUser->birth_date =   $sql['birth_date'];
                     $loggedUser->city       =   $sql['city'];
                     $loggedUser->work       =   $sql['work'];
                     $loggedUser->avatar     =   $sql['avatar'];
@@ -43,7 +43,8 @@
             return false;
         }
 
-        public static function verifyLogin($email, $passowrd){
+        public static function verifyLogin($email, $passowrd)
+        {
 
             $user = User::select()->where('email',$email)->one();
 
@@ -66,6 +67,28 @@
                 return false;
             }
 
+        }
+
+        public static function emailExists($email)
+        {
+            $user = User::select()->where('email',$email)->one();
+            return $user ? true : false;
+        }
+
+        public static function addUser($nome , $email, $passowrd, $birth_date)
+        {
+            $hash = password_hash($passowrd , PASSWORD_DEFAULT);
+            $token = md5(time().rand(0,9999).md5(time()));
+
+            User::insert([
+                'email'     => $email,
+                'password'  => $hash,
+                'nome'      => $nome,
+                'birth_date' => $birth_date,
+                'token'     => $token
+            ])->execute();
+
+            return $token;
         }
     }
 ?>

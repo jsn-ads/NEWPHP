@@ -53,10 +53,58 @@ class LoginController extends Controller {
 
     public function signup()
     {
-        $this->render('signup');
+        $flash = '';
+
+        if(!empty($_SESSION['flash']))
+        {
+            $flash = $_SESSION['flash'];
+
+            $_SESSION['flash'] = '';
+        }
+
+        $this->render('signup',['flash' => $flash]); 
     }
 
     public function signupAction(){
-        echo 'bem vindo';
+
+        $nome        = filter_input(INPUT_POST, 'nome');
+        $email       = filter_input(INPUT_POST, 'email' , FILTER_VALIDATE_EMAIL);
+        $password    = filter_input(INPUT_POST, 'password');
+        $birth_date  = filter_input(INPUT_POST, 'birth_date');
+
+        if($nome && $email && $password && $birth_date)
+        {
+            $birth_date = explode('/', $birth_date);
+
+            if(count($birth_date) != 3)
+            {
+                $_SESSION['flash']  = 'Data de Nascimento Invalida';
+                $this->redirect('/cadastro');
+            }
+
+            $birthdate = $birth_date[2].'-'.$birth_date[1].'-'.$birth_date[0];
+
+            if(strtotime($birthdate) === false)
+            {
+                $_SESSION['flash']  = 'Data de Nascimento Invalida';
+                $this->redirect('/cadastro');
+            }
+
+            if(HelpersLoginHelpers::emailExists($email) === false)
+            {
+                $token = HelpersLoginHelpers::addUser($nome , $email , $password, $birthdate);
+                $_SESSION['token'] = $token;
+                $this->redirect('/');
+            }
+            else
+            {
+                $_SESSION['flash'] = 'E-MAIL ja cadastrado';
+                $this->redirect('/cadastro');
+            }
+        }
+        else
+        {
+            $this->redirect('/cadastro');
+        }
     }
 }
