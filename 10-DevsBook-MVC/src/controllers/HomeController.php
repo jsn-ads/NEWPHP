@@ -20,6 +20,9 @@ class HomeController extends Controller {
     }
 
     public function index() {
-        $this->render('home', ['nome' => 'JSNSYSTEMAS']);
+
+        echo $this->loggedUser->nome;
+
+        $this->render('home', ['loggedUser' => $this->loggedUser]);
     }
 }
