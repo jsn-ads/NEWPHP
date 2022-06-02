@@ -22,7 +22,7 @@
                 </div>
                 <div class="head-side-right">
                     <a href="<?=$base;?>/perfil" class="user-area">
-                        <div class="user-area-text"><?=$loggedUser;?></div>
+                        <div class="user-area-text"><?=$loggedUser->nome; ?></div>
                         <div class="user-area-icon">
                             <img src="<?=$base;?>/media/avatars/avatar.jpg" />
                         </div>

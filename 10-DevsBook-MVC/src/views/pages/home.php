@@ -58,10 +58,10 @@
                             
                             <div class="fic-item row m-height-10 m-width-20">
                                 <div class="fic-item-photo">
-                                    <a href=""><img src="<?=$base;?>/media/avatars/avatar.jpg" /></a>
+                                    <a href="<?=$base;?>"><img src="<?=$base;?>/media/avatars/avatar.jpg" /></a>
                                 </div>
                                 <div class="fic-item-info">
-                                    <a href="">Bonieky Lacerda</a>
+                                    <a href="<?=$base;?>">Bonieky Lacerda</a>
                                     Comentando no meu próprio post
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                                     <a href=""><img src="<?=$base;?>/media/avatars/avatar.jpg" /></a>
                                 </div>
                                 <div class="fic-item-info">
-                                    <a href="">Bonieky Lacerda</a>
+                                    <a href="<?=$base;?>/perfil">Bonieky Lacerda</a>
                                     Muito legal, parabéns!
                                 </div>
                             </div>

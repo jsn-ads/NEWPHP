@@ -33,7 +33,7 @@
                     $loggedUser->work       =   $sql['work'];
                     $loggedUser->avatar     =   $sql['avatar'];
                     $loggedUser->token      =   $sql['token'];
-
+                    
                     return $loggedUser;
 
                 }

@@ -11,9 +11,9 @@ class HomeController extends Controller {
     public function __construct()
     {
 
-        $loggedUser = LoginHelpers::checkLogin();
+        $this->loggedUser = LoginHelpers::checkLogin();
 
-        if($loggedUser === false)
+        if($this->loggedUser === false)
         {
             $this->redirect('/login');
         }
@@ -21,8 +21,7 @@ class HomeController extends Controller {
 
     public function index() {
 
-        echo $this->loggedUser->nome;
-
         $this->render('home', ['loggedUser' => $this->loggedUser]);
+
     }
 }
