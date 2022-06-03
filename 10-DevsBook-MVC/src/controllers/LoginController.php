@@ -6,7 +6,8 @@ use \core\Controller;
 use \helpes\LoginHelpers;
 use src\helpers\LoginHelpers as HelpersLoginHelpers;
 
-class LoginController extends Controller {
+class LoginController extends Controller 
+{
 
     public function signin()
     {

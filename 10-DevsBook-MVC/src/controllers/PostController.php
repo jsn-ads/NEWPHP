@@ -3,11 +3,10 @@ namespace src\controllers;
 
 use \core\Controller;
 use src\helpers\LoginHelpers;
+use src\helpers\PostHelpers;
 
-class HomeController extends Controller 
+class PostController extends Controller
 {
-
-    private $loggedUser;
 
     public function __construct()
     {
@@ -20,9 +19,17 @@ class HomeController extends Controller
         }
     }
 
-    public function index() {
+    public function new ()
+    {
 
-        $this->render('home', ['loggedUser' => $this->loggedUser]);
+        $body = filter_input(INPUT_POST, 'body');
+
+        if(!empty($body))
+        {
+            PostHelpers::addPost($this->loggedUser->id, 'text', $body);
+        }
+
+        $this->redirect('/');
 
     }
 }

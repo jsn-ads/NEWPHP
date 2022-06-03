@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.4.18-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.4.24-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
--- HeidiSQL Versão:              11.0.0.5919
+-- HeidiSQL Versão:              11.3.0.6295
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -10,6 +10,7 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
 -- Copiando estrutura do banco de dados para devsbook
@@ -19,6 +20,7 @@ USE `devsbook`;
 -- Copiando estrutura para tabela devsbook.posts
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL DEFAULT 0,
   `type` varchar(20) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `body` text NOT NULL DEFAULT '0',
@@ -63,16 +65,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(100) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `birth_date` date NOT NULL,
-  `city` varchar(100) NOT NULL,
-  `work` varchar(100) NOT NULL,
-  `avatar` varchar(100) NOT NULL,
-  `cover` varchar(100) NOT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `work` varchar(100) DEFAULT NULL,
+  `avatar` varchar(100) DEFAULT 'avatar.jpg',
+  `cover` varchar(100) DEFAULT NULL,
   `token` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Copiando dados para a tabela devsbook.users: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela devsbook.users: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `email`, `password`, `nome`, `birth_date`, `city`, `work`, `avatar`, `cover`, `token`) VALUES
+	(1, 'jsn@gmail.com', '$2y$10$.C.J2hAdZQZ/gN7QLXSfJOrfbllgiKx5fF1Uf59iIWBhyE0qwoise', 'Jose Neto', '1989-11-20', '', '', 'avatar.jpg', '', '7f6e0abfa7c07d6b70aef46fd7ce9f2c');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela devsbook.user_relations
@@ -88,5 +92,6 @@ CREATE TABLE IF NOT EXISTS `user_relations` (
 /*!40000 ALTER TABLE `user_relations` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

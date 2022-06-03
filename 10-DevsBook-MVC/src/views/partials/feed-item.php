@@ -3,10 +3,10 @@
         
         <div class="feed-item-head row mt-20 m-width-20">
             <div class="feed-item-head-photo">
-                <a href=""><img src="<?=$base;?>/media/avatars/avatar.jpg" /></a>
+                <a href=""><img src="<?=$base;?>/media/avatars/<?= $user->avatar;?>" /></a>
             </div>
             <div class="feed-item-head-info">
-                <a href=""><span class="fidi-name"><?=$loggedUser->nome;?></span></a>
+                <a href=""><span class="fidi-name"><?=$user->nome;?></span></a>
                 <span class="fidi-action">fez um post</span>
                 <br/>
                 <span class="fidi-date">07/03/2020</span>
@@ -31,7 +31,7 @@
             
             <div class="fic-item row m-height-10 m-width-20">
                 <div class="fic-item-photo">
-                    <a href="<?=$base;?>"><img src="<?=$base;?>/media/avatars/avatar.jpg" /></a>
+                    <a href="<?=$base;?>"><img src="<?=$base;?>/media/avatars/<?= $user->avatar;?>" /></a>
                 </div>
                 <div class="fic-item-info">
                     <a href="<?=$base;?>">Bonieky Lacerda</a>
@@ -41,7 +41,7 @@
 
             <div class="fic-item row m-height-10 m-width-20">
                 <div class="fic-item-photo">
-                    <a href=""><img src="<?=$base;?>/media/avatars/avatar.jpg" /></a>
+                    <a href=""><img src="<?=$base;?>/media/avatars/<?= $user->avatar;?>" /></a>
                 </div>
                 <div class="fic-item-info">
                     <a href="<?=$base;?>/perfil">Bonieky Lacerda</a>
@@ -51,7 +51,7 @@
 
             <div class="fic-answer row m-height-10 m-width-20">
                 <div class="fic-item-photo">
-                    <a href=""><img src="<?=$base;?>/media/avatars/avatar.jpg" /></a>
+                    <a href=""><img src="<?=$base;?>/media/avatars/<?= $user->avatar;?>" /></a>
                 </div>
                 <input type="text" class="fic-item-field" placeholder="Escreva um comentário" />
             </div>

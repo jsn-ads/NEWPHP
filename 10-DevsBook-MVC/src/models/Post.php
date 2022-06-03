@@ -4,7 +4,7 @@ namespace src\models;
 
 use \core\Model;
 
-Class User extends Model
+Class Post extends Model
 {
     
 }

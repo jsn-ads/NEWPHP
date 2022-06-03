@@ -10,9 +10,9 @@
 
             <div class="column pr-5">
 
-                <?= $render('/feed-new', ['loggedUser'=>$loggedUser]);?>
+                <?= $render('/feed-new', ['user'=>$loggedUser]);?>
 
-                <?= $render('/feed-item',['loggedUser'=>$loggedUser])?>
+                <?= $render('/feed-item',['user'=>$loggedUser])?>
 
             </div>
 
