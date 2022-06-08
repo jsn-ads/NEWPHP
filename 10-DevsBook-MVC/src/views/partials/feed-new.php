@@ -26,7 +26,7 @@
     feedSubmit.addEventListener('click', function(obj)
     {
 
-        let value = feedInput.innerText;
+        let value = feedInput.innerText.trim();
 
         if(value != '')
         {

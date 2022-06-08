@@ -12,8 +12,9 @@
 
                 <?= $render('/feed-new', ['user'=>$loggedUser]);?>
 
-                <?= $render('/feed-item',['user'=>$loggedUser])?>
-
+                <?php foreach($feed as $item):?>
+                    <?= $render('/feed-item',['data'=>$item]);?>
+                <?php endforeach;?>
             </div>
 
             <div class="column side pl-5">

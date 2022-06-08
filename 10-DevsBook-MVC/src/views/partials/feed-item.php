@@ -6,8 +6,19 @@
                 <a href=""><img src="<?=$base;?>/media/avatars/<?= $user->avatar;?>" /></a>
             </div>
             <div class="feed-item-head-info">
-                <a href=""><span class="fidi-name"><?=$user->nome;?></span></a>
-                <span class="fidi-action">fez um post</span>
+                <a href=""><span class="fidi-name"><?= $data->user->nome;?></span></a>
+                <span class="fidi-action">
+                    <?php
+                        switch($data->type){
+                            case 'text';
+                                echo 'fez um post';
+                                break;
+                            case 'foto';
+                                echo 'postou uma foto';
+                                break;
+                        }
+                    ?>
+                </span>
                 <br/>
                 <span class="fidi-date">07/03/2020</span>
             </div>
