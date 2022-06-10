@@ -13,7 +13,10 @@
                 <?= $render('/feed-new', ['user'=>$loggedUser]);?>
 
                 <?php foreach($feed as $item):?>
-                    <?= $render('/feed-item',['data'=>$item]);?>
+                    <?= $render('/feed-item',[
+                                                'data'          => $item,
+                                                'loggedUser'    => $loggedUser
+                                             ]);?>
                 <?php endforeach;?>
             </div>
 

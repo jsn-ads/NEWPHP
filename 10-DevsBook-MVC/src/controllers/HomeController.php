@@ -23,7 +23,14 @@ class HomeController extends Controller
 
     public function index() {
 
-        $feed = PostHelpers::getHomeFeed($this->loggedUser->id);
+        //pega numero da paginação
+        $page = intval(filter_input(INPUT_GET, 'page'));
+
+        //retorna postagem e paginação do PostHelpers
+        $feed = PostHelpers::getHomeFeed(
+                                            $this->loggedUser->id , 
+                                            $page
+                                        );
 
         $this->render('home', [
                                 'loggedUser' => $this->loggedUser,
