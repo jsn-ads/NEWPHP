@@ -1,9 +1,7 @@
 <?php
 namespace src\controllers;
 
-use ClanCats\Hydrahon\Query\Sql\Func;
 use \core\Controller;
-use \helpes\LoginHelpers;
 use src\helpers\LoginHelpers as HelpersLoginHelpers;
 
 class LoginController extends Controller 
