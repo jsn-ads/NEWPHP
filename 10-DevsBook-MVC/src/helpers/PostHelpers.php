@@ -39,9 +39,23 @@ class PostHelpers
 
         $users [] = $idUser;
 
-        // pegar o posto de todos os usuarios
+        // retorna o post de todos os usuarios
 
-        $postList = Post::select()->where('id_user','in',$users)->orderBy('created_at', 'desc')->get();
+        $perpage = 2; // quantidade de feed por pagina
+        
+        // retorna post de todos os usuarios por data em ordem da hora mais atual para antiga
+        $postList = Post::select()
+                            ->where('id_user','in',$users)
+                            ->orderBy('created_at', 'desc')
+                            ->page($page , $perpage)
+                        ->get();
+
+        // retorna quantidade total de usuarios
+        $total    = Post::select()
+                            ->where('id_user','in',$users)
+                        ->count();
+
+        $pagination = ceil($total / $perpage);
 
         $posts = [];
 
@@ -78,7 +92,11 @@ class PostHelpers
             $posts[] = $post;
         }
 
-        return $posts;
+        return [
+            'posts'      => $posts,
+            'pagination' => $pagination,
+            'page'       => $page       
+        ];
 
     }
 }

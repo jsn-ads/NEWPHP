@@ -34,7 +34,7 @@ class HomeController extends Controller
 
         $this->render('home', [
                                 'loggedUser' => $this->loggedUser,
-                                'feed' =>       $feed
+                                'feed'       => $feed
                               ]);
 
     }

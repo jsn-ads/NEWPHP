@@ -12,12 +12,19 @@
 
                 <?= $render('/feed-new', ['user'=>$loggedUser]);?>
 
-                <?php foreach($feed as $item):?>
+                <?php foreach($feed['posts'] as $item):?>
                     <?= $render('/feed-item',[
                                                 'data'          => $item,
                                                 'loggedUser'    => $loggedUser
                                              ]);?>
                 <?php endforeach;?>
+
+                <div class="feed-pagination">
+                    <?php for($i = 0; $i < $feed['pagination'];$i++):?>
+                        <a  class="<?=($i == $feed['page'] ? 'active':'')?>"  href="<?=$base;?>/?page=<?=$i;?>"><?=$i+1;?></a>
+                    <?php endfor;?>
+                </div>
+                
             </div>
 
             <div class="column side pl-5">
