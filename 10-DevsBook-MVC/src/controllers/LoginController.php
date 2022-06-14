@@ -2,7 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
-use src\helpers\LoginHelpers as HelpersLoginHelpers;
+use src\helpers\UserHelpers as HelpersUserHelpers;
 
 class LoginController extends Controller 
 {
@@ -30,7 +30,7 @@ class LoginController extends Controller
         if($email && $password)
         {
 
-            $token = HelpersLoginHelpers::verifyLogin($email , $password);
+            $token = HelpersUserHelpers::verifyLogin($email , $password);
 
             if($token)
             {
@@ -89,9 +89,9 @@ class LoginController extends Controller
                 $this->redirect('/cadastro');
             }
 
-            if(HelpersLoginHelpers::emailExists($email) === false)
+            if(HelpersUserHelpers::emailExists($email) === false)
             {
-                $token = HelpersLoginHelpers::addUser($nome , $email , $password, $birthdate);
+                $token = HelpersUserHelpers::addUser($nome , $email , $password, $birthdate);
                 $_SESSION['token'] = $token;
                 $this->redirect('/');
             }

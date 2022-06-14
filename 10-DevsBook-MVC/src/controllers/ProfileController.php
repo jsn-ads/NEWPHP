@@ -2,7 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
-use \src\helpers\LoginHelpers;
+use \src\helpers\UserHelpers;
 use \src\helpers\PostHelpers;
 
 class ProfileController extends Controller 
@@ -13,7 +13,7 @@ class ProfileController extends Controller
     public function __construct()
     {
 
-        $this->loggedUser = LoginHelpers::checkLogin();
+        $this->loggedUser = UserHelpers::checkLogin();
 
         if($this->loggedUser === false)
         {
@@ -30,8 +30,16 @@ class ProfileController extends Controller
             $id = $atts['id'];
         }
 
+        $user = UserHelpers::getUser($id);
+
+        if(empty($user))
+        {
+            return $this->redirect('/');
+        }
+
         $this->render('profile', [
-                                    'loggedUser' => $this->loggedUser
+                                    'loggedUser' => $this->loggedUser,
+                                    'user'       => $user
                                  ]);
     }
 }

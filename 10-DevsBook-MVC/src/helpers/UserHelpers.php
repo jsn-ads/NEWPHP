@@ -8,7 +8,7 @@
 
     use src\models\User;
 
-    class LoginHelpers {
+    class UserHelpers {
 
         // verifica se a sessao posseui algum token , caso tenha verifica se esse token pertece algum usuario registrado 
         public static function checkLogin()
@@ -84,17 +84,40 @@
             return $user ? true : false;
         }
 
+        public static function getUser($id)
+        {   
+            $dados = User::select()
+                            ->where('id',$id)
+                         ->one();
+            
+            if($dados)
+            {
+                $user               = new User();
+                $user->id           = $dados['id'];
+                $user->nome         = $dados['nome'];
+                $user->birth_date   = $dados['birth_date'];
+                $user->city         = $dados['city'];
+                $user->work         = $dados['work'];
+                $user->avatar       = $dados['avatar'];
+                $user->cover        = $dados['cover'];
+
+                return $user;
+            }
+
+            return false;
+        }
+
         public static function addUser($nome , $email, $passowrd, $birth_date)
         {
             $hash = password_hash($passowrd , PASSWORD_DEFAULT);
             $token = md5(time().rand(0,9999).md5(time()));
 
             User::insert([
-                'email'     => $email,
-                'password'  => $hash,
-                'nome'      => $nome,
+                'email'      => $email,
+                'password'   => $hash,
+                'nome'       => $nome,
                 'birth_date' => $birth_date,
-                'token'     => $token
+                'token'      => $token
             ])->execute();
 
             return $token;

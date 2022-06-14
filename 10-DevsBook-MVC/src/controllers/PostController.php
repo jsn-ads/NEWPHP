@@ -2,7 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
-use src\helpers\LoginHelpers;
+use src\helpers\UserHelpers;
 use src\helpers\PostHelpers;
 
 class PostController extends Controller
@@ -11,7 +11,7 @@ class PostController extends Controller
     public function __construct()
     {
 
-        $this->loggedUser = LoginHelpers::checkLogin();
+        $this->loggedUser = UserHelpers::checkLogin();
 
         if($this->loggedUser === false)
         {
