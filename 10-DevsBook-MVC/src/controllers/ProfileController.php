@@ -30,7 +30,7 @@ class ProfileController extends Controller
             $id = $atts['id'];
         }
 
-        $user = UserHelpers::getUser($id);
+        $user = UserHelpers::getUser($id , true);
 
         if(empty($user))
         {

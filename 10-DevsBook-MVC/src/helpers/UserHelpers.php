@@ -7,6 +7,7 @@
     namespace src\helpers;
 
     use src\models\User;
+    use src\models\UserRelation;
 
     class UserHelpers {
 
@@ -84,7 +85,7 @@
             return $user ? true : false;
         }
 
-        public static function getUser($id)
+        public static function getUser($id , $full = false)
         {   
             $dados = User::select()
                             ->where('id',$id)
@@ -100,6 +101,51 @@
                 $user->work         = $dados['work'];
                 $user->avatar       = $dados['avatar'];
                 $user->cover        = $dados['cover'];
+
+                if($full)
+                {
+
+                    $user->followers = [];
+                    $user->following = [];
+                    $user->photos = [];
+
+                    //recuperando seguidores 
+                    $followers = UserRelation::select()
+                                                ->where('user_to' , $id)
+                                             ->get();
+
+                    foreach($followers as $f)
+                    {
+                        $userData = User::select()
+                                            ->where('id', $f['user_from'])
+                                        ->one();
+                        $follower         = new User();
+                        $follower->id     = $userData['id'];
+                        $follower->nome   = $userData['nome'];
+                        $follower->avatar = $userData['avatar'];
+
+                        $user->followers[] = $follower;
+                    }
+
+                    //recuperando os usuarios que user segue 
+                    $following = UserRelation::select()
+                                                ->where('user_from' , $id)
+                                             ->get();
+
+                    foreach($following as $f)
+                    {
+                        $userData = User::select()
+                                            ->where('id', $f['user_to'])
+                                        ->one();
+                        $follower         = new User();
+                        $follower->id     = $userData['id'];
+                        $follower->nome   = $userData['nome'];
+                        $follower->avatar = $userData['avatar'];
+
+                        $user->followers[] = $follower;
+                    }
+
+                }
 
                 return $user;
             }
