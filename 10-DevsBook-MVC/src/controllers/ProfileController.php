@@ -5,7 +5,7 @@ use \core\Controller;
 use \src\helpers\LoginHelpers;
 use \src\helpers\PostHelpers;
 
-class ProfilerController extends Controller 
+class ProfileController extends Controller 
 {
 
     private $loggedUser;
@@ -21,7 +21,14 @@ class ProfilerController extends Controller
         }
     }
 
-    public function index() {
+    public function index($atts = []) 
+    {
+        $id = $this->loggedUser->id;
+
+        if(!empty($attts['id']))
+        {
+            $id = $atts['id'];
+        }
 
         $this->render('profile', [
                                     'loggedUser' => $this->loggedUser

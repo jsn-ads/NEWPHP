@@ -1,22 +1,22 @@
 <aside class="mt-10">
     <nav>
         <a href="">
-            <div class="menu-item active">
+            <div class="menu-item <?=($menuActive == 'home') ? 'active':''?>">
                 <div class="menu-item-icon">
                     <img src="<?=$base;?>/assets/images/home-run.png" width="16" height="16" />
                 </div>
                 <div class="menu-item-text">
-                    Home
+                    <a href="<?=$base;?>/">Home</a>
                 </div>
             </div>
         </a>
         <a href="">
-            <div class="menu-item">
+            <div class="menu-item <?=($menuActive == 'profile') ? 'active':''?>">
                 <div class="menu-item-icon">
                     <img src="<?=$base;?>/assets/images/user.png" width="16" height="16" />
                 </div>
                 <div class="menu-item-text">
-                    Meu Perfil
+                    <a href="<?=$base;?>/perfil">Meu Perfil</a>
                 </div>
             </div>
         </a>
