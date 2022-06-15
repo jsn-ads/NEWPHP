@@ -70,25 +70,30 @@
                         <div class="box-header m-10">
                             <div class="box-header-text">
                                 Seguindo
-                                <span><?= count($user->followers);?></span>
+                                <span><?= count($user->following);?></span>
                             </div>
                             <div class="box-header-buttons">
                                 <a href="">ver todos</a>
                             </div>
                         </div>
                         <div class="box-body friend-list">
+                                
                             
-                            <div class="friend-icon">
-                                <a href="">
-                                    <div class="friend-icon-avatar">
-                                        <img src="media/avatars/avatar.jpg" />
+                            <?php for($i = 0; $i < 9; $i++):?>
+                                <?php if(isset($user->following[$i])):?>
+                                    <div class="friend-icon">
+                                        <a href="">
+                                            <div class="friend-icon-avatar">
+                                                <img src="<?= $base;?>/media/avatars/<?= $user->following[$i]->avatar;?>" />
+                                            </div>
+                                            <div class="friend-icon-name">
+                                                <?= $user->following[$i]->nome;?>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="friend-icon-name">
-                                        Bonieky
-                                    </div>
-                                </a>
-                            </div>
-
+                                <?php endif;?>
+                            <?php endfor ;?>
+   
                         </div>
                     </div>
 

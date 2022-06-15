@@ -127,7 +127,7 @@
                         $user->followers[] = $follower;
                     }
 
-                    //recuperando os usuarios que user segue 
+                    //recuperando os usuarios que usuario segue 
                     $following = UserRelation::select()
                                                 ->where('user_from' , $id)
                                              ->get();
@@ -142,7 +142,7 @@
                         $follower->nome   = $userData['nome'];
                         $follower->avatar = $userData['avatar'];
 
-                        $user->followers[] = $follower;
+                        $user->following[] = $follower;
                     }
 
                 }
