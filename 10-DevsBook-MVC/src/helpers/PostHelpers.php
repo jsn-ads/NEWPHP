@@ -112,7 +112,7 @@ class PostHelpers
         {
             $post = new Post();
             $post->id         = $photo['id'];
-            $post->type       = $photo['photo'];
+            $post->type       = $photo['type'];
             $post->created_at = $photo['created_at'];
             $post->body       = $photo['body'];
 
