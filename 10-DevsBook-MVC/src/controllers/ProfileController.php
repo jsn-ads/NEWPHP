@@ -3,7 +3,6 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\helpers\UserHelpers;
-use \src\helpers\PostHelpers;
 
 class ProfileController extends Controller 
 {
@@ -31,6 +30,7 @@ class ProfileController extends Controller
         }
 
         $user = UserHelpers::getUser($id , true);
+        $user->ageYears = UserHelpers::ageYears($user->birth_date);
 
         if(empty($user))
         {

@@ -46,7 +46,7 @@
                             
                             <div class="user-info-mini">
                                 <img src="assets/images/calendar.png" />
-                                <?= date('d/m/Y' , strtotime($user->birth_date));?>
+                                <?= date('d/m/Y' , strtotime($user->birth_date));?> (<?= $user->ageYears;?>) Anos
                             </div>
 
                             <?php if($user->city):?>
@@ -112,14 +112,18 @@
                         </div>
                         <div class="box-body row m-20">
                             
-                            <div class="user-photo-item">
-                                <a href="#modal-1" rel="modal:open">
-                                    <img src="media/uploads/1.jpg" />
-                                </a>
-                                <div id="modal-1" style="display:none">
-                                    <img src="media/uploads/1.jpg" />
-                                </div>
-                            </div>
+                            <?php for($i = 0; $i < 4;$i++):?>
+                                 <?php if(isset($user->photos[$i])):?>
+                                    <div class="user-photo-item">
+                                        <a href="#modal-<?= $user->photos[$i]->id;?>" rel="modal:open">
+                                            <img src="<?= $base;?>/media/uploads/<?= $user->photos[$i]->body;?>" />
+                                        </a>
+                                        <div id="modal-<?= $user->photos[$i]->id;?>" style="display:none">
+                                            <img src="<?= $base;?>/media/uploads/<?= $user->photos[$i]->body;?>" />
+                                        </div>
+                                    </div>
+                                 <?php endif;?>
+                            <?php endfor;?>
 
                         </div>
                     </div>

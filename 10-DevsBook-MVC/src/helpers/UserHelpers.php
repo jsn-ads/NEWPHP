@@ -8,6 +8,8 @@
 
     use src\models\User;
     use src\models\UserRelation;
+    use scr\helpers\PostHelpers;
+    use src\helpers\PostHelpers as HelpersPostHelpers;
 
     class UserHelpers {
 
@@ -22,7 +24,7 @@
 
                 $sql = User::select()->where('token', $token)->one();
 
-                if(count($sql) > 0)
+                if($sql)
                 {
 
                     $loggedUser = new User();
@@ -34,7 +36,7 @@
                     $loggedUser->work       =   $sql['work'];
                     $loggedUser->avatar     =   $sql['avatar'];
                     $loggedUser->token      =   $sql['token'];
-                    
+                
                     return $loggedUser;
 
                 }
@@ -44,6 +46,7 @@
             return false;
         }
 
+        // metodo para fazer login
         public static function verifyLogin($email, $passowrd)
         {
 
@@ -51,6 +54,7 @@
 
             if($user)
             {
+
                 if(password_verify($passowrd, $user['password']))
                 {
                     $token = md5(time().rand(0,9999).time());
@@ -70,6 +74,7 @@
 
         }
 
+        // metodo para verifica de id existe
         public static function idExists($id)
         {
             $user = User::select()
@@ -85,6 +90,7 @@
             return $user ? true : false;
         }
 
+        // metodo para recupera usuario
         public static function getUser($id , $full = false)
         {   
             $dados = User::select()
@@ -145,6 +151,10 @@
                         $user->following[] = $follower;
                     }
 
+                    //recuperando photos
+
+                    $user->photos = HelpersPostHelpers::getPhotosFrom($id);
+
                 }
 
                 return $user;
@@ -153,6 +163,7 @@
             return false;
         }
 
+        // metodo para add usuario
         public static function addUser($nome , $email, $passowrd, $birth_date)
         {
             $hash = password_hash($passowrd , PASSWORD_DEFAULT);
@@ -167,6 +178,14 @@
             ])->execute();
 
             return $token;
+        }
+
+        // metodo para calcular idade
+        public static function ageYears($birthdate)
+        {
+            $dataFrom = new \DateTime($birthdate);
+            $dateTo   = new \DateTime('today');
+            return $dataFrom->diff($dateTo)->y;
         }
     }
 ?>

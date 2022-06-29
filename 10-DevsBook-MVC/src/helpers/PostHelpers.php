@@ -40,7 +40,6 @@ class PostHelpers
         $users [] = $idUser;
 
         // retorna o post de todos os usuarios
-
         $perpage = 2; // quantidade de feed por pagina
         
         // retorna post de todos os usuarios por data em ordem da hora mais atual para antiga
@@ -88,7 +87,6 @@ class PostHelpers
             $post->comments     =   [];
 
             // retun post
-
             $posts[] = $post;
         }
 
@@ -98,5 +96,30 @@ class PostHelpers
             'page'       => $page       
         ];
 
+    }
+
+    public static function getPhotosFrom($idUser)
+    {
+        
+        $photosData = Post::select()
+                                 ->where('idUser', $idUser)
+                                 ->where('type', 'photo')
+                            ->get();
+
+        $photos = [];
+
+        foreach($photosData as $photo)
+        {
+            $post = new Post();
+            $post->id         = $photo['id'];
+            $post->type       = $photo['photo'];
+            $post->created_at = $photo['created_at'];
+            $post->body       = $photo['body'];
+
+            $photos[] = $post;
+
+        }
+
+        return $photos;
     }
 }
