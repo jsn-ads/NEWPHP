@@ -24,6 +24,34 @@ class PostHelpers
         }
     }
 
+    public static function getUserFeed($idUser, $page, $loggerUserId)
+    {
+        // retorna o post de todos os usuarios
+        $perpage = 2; // quantidade de feed por pagina
+        
+        // retorna post de todos os usuarios por data em ordem da hora mais atual para antiga
+        $postList = Post::select()
+                            ->where('id_user',$idUser)
+                            ->orderBy('created_at', 'desc')
+                            ->page($page , $perpage)
+                        ->get();
+
+        // retorna quantidade total de usuarios
+        $total    = Post::select()
+                            ->where('id_user',$idUser)
+                        ->count();
+
+        $pagination = ceil($total / $perpage);
+
+        $posts = self::_postListObject($postList , $loggerUserId);
+
+        return [
+            'posts'      => $posts,
+            'pagination' => $pagination,
+            'page'       => $page       
+        ];
+    }
+
     public static function getHomeFeed($idUser, $page)
     {
         // pegar a lista de usuarios que eu sigo incluindo o prorpio
@@ -55,6 +83,45 @@ class PostHelpers
                         ->count();
 
         $pagination = ceil($total / $perpage);
+
+        $posts = self::_postListObject($postList , $idUser);
+
+        return [
+            'posts'      => $posts,
+            'pagination' => $pagination,
+            'page'       => $page       
+        ];
+
+    }
+
+    public static function getPhotosFrom($idUser)
+    {
+        
+        $photosData = Post::select()
+                                 ->where('idUser', $idUser)
+                                 ->where('type', 'photo')
+                            ->get();
+
+        $photos = [];
+
+        foreach($photosData as $photo)
+        {
+            $post = new Post();
+            $post->id         = $photo['id'];
+            $post->type       = $photo['type'];
+            $post->created_at = $photo['created_at'];
+            $post->body       = $photo['body'];
+
+            $photos[] = $post;
+
+        }
+
+        return $photos;
+    }
+    
+    //metodos retorna a lista de posts
+    public function _postListObject($postList , $idUser)
+    {
 
         $posts = [];
 
@@ -90,36 +157,6 @@ class PostHelpers
             $posts[] = $post;
         }
 
-        return [
-            'posts'      => $posts,
-            'pagination' => $pagination,
-            'page'       => $page       
-        ];
-
-    }
-
-    public static function getPhotosFrom($idUser)
-    {
-        
-        $photosData = Post::select()
-                                 ->where('idUser', $idUser)
-                                 ->where('type', 'photo')
-                            ->get();
-
-        $photos = [];
-
-        foreach($photosData as $photo)
-        {
-            $post = new Post();
-            $post->id         = $photo['id'];
-            $post->type       = $photo['type'];
-            $post->created_at = $photo['created_at'];
-            $post->body       = $photo['body'];
-
-            $photos[] = $post;
-
-        }
-
-        return $photos;
+        return $posts;
     }
 }

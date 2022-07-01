@@ -30,7 +30,7 @@ class HomeController extends Controller
         $feed = PostHelpers::getHomeFeed(
                                             $this->loggedUser->id , 
                                             $page
-                                        );
+        );
 
         $this->render('home', [
                                 'loggedUser' => $this->loggedUser,

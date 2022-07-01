@@ -25,10 +25,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `created_at` datetime NOT NULL,
   `body` text NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Copiando dados para a tabela devsbook.posts: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela devsbook.posts: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` (`id`, `id_user`, `type`, `created_at`, `body`) VALUES
+	(1, 1, 'text', '2022-06-08 14:20:45', 'oi bom dia '),
+	(2, 1, 'text', '2022-06-09 19:57:43', 'esta ficando complicado\r\n\r\n\r\nnão acha ?'),
+	(3, 1, 'text', '2022-06-13 19:50:34', 'mais um dia testanto');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela devsbook.post_comments
@@ -71,12 +75,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `cover` varchar(100) DEFAULT NULL,
   `token` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Copiando dados para a tabela devsbook.users: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela devsbook.users: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `email`, `password`, `nome`, `birth_date`, `city`, `work`, `avatar`, `cover`, `token`) VALUES
-	(1, 'jsn@gmail.com', '$2y$10$.C.J2hAdZQZ/gN7QLXSfJOrfbllgiKx5fF1Uf59iIWBhyE0qwoise', 'Jose Neto', '1989-11-20', '', '', 'avatar.jpg', '', '7f6e0abfa7c07d6b70aef46fd7ce9f2c');
+	(1, 'jsn@gmail.com', '$2y$10$fQmu9P1qpDb0E8KRUTZsMOoWvyM0M1D3nJXQNlLBEPaP8xcbeS7Hy', 'Jose Neto', '1989-11-20', '', '', 'avatar.jpg', 'cover.jpg', '2468747b3d6cafae93147a2fb9fa14d3'),
+	(3, 'g@gmail.com', '$2y$10$.QdYKpAArnl7FbJIqMq8cuhM9/VSkcg0OEfNEYI9HlhvJDsfZW3ka', 'Neto', '1989-11-20', NULL, NULL, 'avatar.jpg', NULL, 'fb55abc72b5fd7b74fc5c083b64d63b3');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela devsbook.user_relations
