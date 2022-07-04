@@ -2,6 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
+use src\helpers\PostHelpers;
 use \src\helpers\UserHelpers;
 
 class ProfileController extends Controller 
@@ -22,24 +23,31 @@ class ProfileController extends Controller
 
     public function index($atts = []) 
     {
+
+        $page = intval(filter_input(INPUT_GET,'page'));
+
         $id = $this->loggedUser->id;
 
-        if(!empty($attts['id']))
+        if(!empty($atts['id']))
         {
             $id = $atts['id'];
         }
 
         $user = UserHelpers::getUser($id , true);
-        $user->ageYears = UserHelpers::ageYears($user->birth_date);
 
         if(empty($user))
         {
             return $this->redirect('/');
         }
+        
+        $user->ageYears = UserHelpers::ageYears($user->birth_date);
+
+        $feed = PostHelpers::getUserFeed($id, $page, $this->loggedUser->id);
 
         $this->render('profile', [
                                     'loggedUser' => $this->loggedUser,
-                                    'user'       => $user
+                                    'user'       => $user,
+                                    'feed'       => $feed
                                  ]);
     }
 }
