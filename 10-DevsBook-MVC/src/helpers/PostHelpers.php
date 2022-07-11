@@ -98,7 +98,7 @@ class PostHelpers
     {
         
         $photosData = Post::select()
-                                 ->where('idUser', $idUser)
+                                 ->where('id_user', $idUser)
                                  ->where('type', 'photo')
                             ->get();
 
@@ -120,7 +120,7 @@ class PostHelpers
     }
     
     //metodos retorna a lista de posts
-    public function _postListObject($postList , $idUser)
+    public static function _postListObject($postList , $idUser)
     {
 
         $posts = [];
