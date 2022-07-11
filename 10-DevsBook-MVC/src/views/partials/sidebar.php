@@ -60,7 +60,7 @@
                     <img src="<?=$base;?>/assets/images/power.png" width="16" height="16" />
                 </div>
                 <div class="menu-item-text">
-                    Sair
+                    <a href="<?= $base;?>/sair">Sair</a>
                 </div>
             </div>
         </a>
