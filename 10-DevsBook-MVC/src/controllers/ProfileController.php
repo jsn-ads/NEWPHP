@@ -26,6 +26,7 @@ class ProfileController extends Controller
 
         $page = intval(filter_input(INPUT_GET,'page'));
 
+        // detectando o usuario acessado
         $id = $this->loggedUser->id;
 
         if(!empty($atts['id']))
@@ -33,6 +34,7 @@ class ProfileController extends Controller
             $id = $atts['id'];
         }
 
+        // pegando informações do usuario
         $user = UserHelpers::getUser($id , true);
 
         if(empty($user))
@@ -40,8 +42,10 @@ class ProfileController extends Controller
             return $this->redirect('/');
         }
         
+        // pegando a idade do usuario
         $user->ageYears = UserHelpers::ageYears($user->birth_date);
 
+        // peegando o feed do usuario
         $feed = PostHelpers::getUserFeed($id, $page, $this->loggedUser->id);
 
         $this->render('profile', [
