@@ -8,7 +8,6 @@
 
     use src\models\User;
     use src\models\UserRelation;
-    use scr\helpers\PostHelpers;
     use src\helpers\PostHelpers as HelpersPostHelpers;
 
     class UserHelpers {
@@ -186,6 +185,22 @@
             $dataFrom = new \DateTime($birthdate);
             $dateTo   = new \DateTime('today');
             return $dataFrom->diff($dateTo)->y;
+        }
+
+        // metodo para verificar se eu sigo o usuario
+        public static function isFollowing($from , $to)
+        {
+            $data = UserRelation::select()
+                                        ->where('user_from', $from)
+                                        ->where('user_to' ,  $to)
+                                    ->one();
+            
+            if($data)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 ?>

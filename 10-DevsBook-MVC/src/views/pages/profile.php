@@ -12,7 +12,7 @@
                         <div class="profile-cover" style="background-image: url('<?=$base;?>/media/covers/<?=$user->cover;?>');"></div>
                         <div class="profile-info m-20 row">
                             <div class="profile-info-avatar">
-                                <img src="media/avatars/avatar.jpg" />
+                                <img src="<?=$base;?>/media/avatars/avatar.jpg" />
                             </div>
                             <div class="profile-info-name">
                                 <div class="profile-info-name-text"><?=$user->nome;?></div>
@@ -22,7 +22,11 @@
 
                                 <?php if($user->id != $loggedUser->id):?>
                                 <div class="profile-info-item m-width-20">
-                                    <a href="" class="button">Seguir</a>
+                                    <?php if($isFollowing):?>
+                                        <a href="" class="button">Deixa de Seguir</a>
+                                    <?php else:?>
+                                        <a href="" class="button">Seguir</a>
+                                    <?php endif;?>
                                 </div>
                                 <?php endif;?>
 
@@ -54,7 +58,7 @@
                         <div class="box-body">
                             
                             <div class="user-info-mini">
-                                <img src="assets/images/calendar.png" />
+                                <img src="<?= $base;?>/assets/images/calendar.png" />
                                 <?= date('d/m/Y' , strtotime($user->birth_date));?> (<?= $user->ageYears;?>) Anos
                             </div>
 

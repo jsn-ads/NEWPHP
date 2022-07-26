@@ -48,10 +48,20 @@ class ProfileController extends Controller
         // peegando o feed do usuario
         $feed = PostHelpers::getUserFeed($id, $page, $this->loggedUser->id);
 
+        // verifica se eu estou seguindo o usuario
+        $isFollowing = '';
+
+        if($user->id != $this->loggedUser->id)
+        {
+            $isFollowing = UserHelpers::isFollowing($this->loggedUser->id , $user->id);
+        }
+        
+
         $this->render('profile', [
-                                    'loggedUser' => $this->loggedUser,
-                                    'user'       => $user,
-                                    'feed'       => $feed
+                                    'loggedUser'  => $this->loggedUser,
+                                    'user'        => $user,
+                                    'feed'        => $feed,
+                                    'isFollowing' => $isFollowing
                                  ]);
     }
 }
