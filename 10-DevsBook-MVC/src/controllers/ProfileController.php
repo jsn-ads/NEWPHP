@@ -64,4 +64,9 @@ class ProfileController extends Controller
                                     'isFollowing' => $isFollowing
                                  ]);
     }
+
+    public function follow($atts)
+    {
+        
+    }
 }
