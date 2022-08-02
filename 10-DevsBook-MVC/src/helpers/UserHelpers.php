@@ -77,9 +77,9 @@
         public static function idExists($id)
         {
             $user = User::select()
-                                ->where('id',$id)
-                        ->one();
-            
+                ->where('id',$id)
+            ->one();
+
             return $user ? true : false;
         }
 
@@ -93,8 +93,8 @@
         public static function getUser($id , $full = false)
         {   
             $dados = User::select()
-                            ->where('id',$id)
-                         ->one();
+                ->where('id',$id)
+            ->one();
             
             if($dados)
             {
@@ -191,9 +191,9 @@
         public static function isFollowing($from , $to)
         {
             $data = UserRelation::select()
-                                        ->where('user_from', $from)
-                                        ->where('user_to' ,  $to)
-                                    ->one();
+                ->where('user_from', $from)
+                ->where('user_to' ,  $to)
+            ->one();
             
             if($data)
             {
@@ -202,5 +202,23 @@
 
             return false;
         }
-    }
+
+        // metodo de adicionar seguidores
+        public static function follow($from , $to)
+        {
+            UserRelation::insert([
+                'user_from' => $from,
+                'user_to'   => $to
+            ])->execute();
+        }
+
+        // metodo de remover seguidores
+        public static function unfollow($from , $to)
+        {
+            UserRelation::delete()
+                ->where('user_from', $from)
+                ->where('user_to', $to)
+            ->execute();
+        }
+    }   
 ?>
