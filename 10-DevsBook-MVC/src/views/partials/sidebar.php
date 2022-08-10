@@ -26,7 +26,7 @@
                     <img src="<?=$base;?>/assets/images/friends.png" width="16" height="16" />
                 </div>
                 <div class="menu-item-text">
-                    Amigos
+                    <a href="<?=$base;?>/amigos">Amigos</a>
                 </div>
                 <div class="menu-item-badge">
                     33
