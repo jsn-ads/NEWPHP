@@ -122,4 +122,40 @@ class ProfileController extends Controller
 
 
     }
+
+    public function photos($atts = [])
+    {
+  
+        $id = $this->loggedUser->id;
+
+        // detectando o usuario acessado
+        if($atts)
+        {
+            $id = $atts['id'];
+        }
+
+        // pegando informações do usuario
+        $user = UserHelpers::getUser($id , true);
+
+        // pegando a idade do usuario
+        $user->ageYears = UserHelpers::ageYears($user->birth_date);
+
+        // verifica se eu estou seguindo o usuario
+        $isFollowing = '';
+
+        if($user->id != $this->loggedUser->id)
+        {
+            $isFollowing = UserHelpers::isFollowing($this->loggedUser->id , $user->id);
+        }
+
+        $this->render('profile_photos', 
+            [
+                'loggedUser'  => $this->loggedUser,
+                'user'        => $user,
+                'isFollowing' => $isFollowing
+            ]
+        );
+
+
+    }
 }

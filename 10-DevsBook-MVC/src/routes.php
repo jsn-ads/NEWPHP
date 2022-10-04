@@ -23,6 +23,11 @@ $router->get('/perfil'             ,'ProfileController@index');
 
 $router->get('/perfil/{id}/amigos' ,'ProfileController@friends');
 
+$router->get('/perfil/{id}/fotos'  ,'ProfileController@photos');
+
+
+$router->get('/fotos'               ,'ProfileController@photos');
+
 $router->get('/amigos'             ,'ProfileController@friends');
 
 $router->get('/sair'               ,'LoginController@logout');
