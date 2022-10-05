@@ -269,6 +269,11 @@ header .head-side {
 .profile-info-name {
     flex:1;
 }
+
+.profile-info-name a {
+    text-decoration: none;
+}
+
 .profile-info-name-text {
     font-size:20px;
     margin-bottom:5px;
@@ -291,6 +296,11 @@ header .head-side {
 .profile-info-item {
     text-align: center;
 }
+
+.profile-info-item a{
+    text-decoration: none;
+}
+
 .profile-info-item-n {
     font-weight: bold;
     font-size:20px;

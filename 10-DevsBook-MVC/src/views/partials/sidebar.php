@@ -39,7 +39,7 @@
                     <img src="<?=$base;?>/assets/images/photo.png" width="16" height="16" />
                 </div>
                 <div class="menu-item-text">
-                    Fotos
+                <a href="<?=$base;?>/fotos">Fotos</a>
                 </div>
             </div>
         </a>
