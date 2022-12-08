@@ -220,7 +220,8 @@
                 ->where('user_to', $to)
             ->execute();
         }
-
+        
+        // pesquisar de usuario
         public static function pesquisarUsuario($dados)
         {
             $users = [];

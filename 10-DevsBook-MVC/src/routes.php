@@ -31,4 +31,6 @@ $router->get('/fotos'              ,'ProfileController@photos');
 
 $router->get('/amigos'             ,'ProfileController@friends');
 
+$router->get('/configuracao'       ,'ConfigController@index');
+
 $router->get('/sair'               ,'LoginController@logout');
