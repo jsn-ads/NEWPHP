@@ -220,5 +220,27 @@
                 ->where('user_to', $to)
             ->execute();
         }
+
+        public static function pesquisarUsuario($dados)
+        {
+            $users = [];
+
+            $data = User::select()->where('nome' , 'like'  , '%'.$dados.'%')->get();
+
+            if($data)
+            {
+                foreach($data as $user)
+                {
+                    $u = new User();
+                    $u->id = $user['id'];
+                    $u->nome = $user['nome'];
+                    $u->avatar = $user['avatar'];
+
+                    $users[] = $u;
+                }
+            }
+
+            return $users;
+        }
     }   
 ?>

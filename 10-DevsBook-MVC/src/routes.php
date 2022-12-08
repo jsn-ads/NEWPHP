@@ -27,7 +27,7 @@ $router->get('/perfil/{id}/fotos'  ,'ProfileController@photos');
 
 $router->get('/pesquisa'           ,'SearchController@index');
 
-$router->get('/fotos'               ,'ProfileController@photos');
+$router->get('/fotos'              ,'ProfileController@photos');
 
 $router->get('/amigos'             ,'ProfileController@friends');
 

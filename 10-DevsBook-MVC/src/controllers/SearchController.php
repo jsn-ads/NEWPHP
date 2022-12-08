@@ -30,11 +30,13 @@ class SearchController extends Controller
             $this->redirect('/');
         }
 
+        $users = UserHelpers::pesquisarUsuario($filtroPesquisa);
 
         $this->render('search', 
             [
                 'loggedUser'  => $this->loggedUser,
-                'filtroPesquisa' => $filtroPesquisa
+                'filtroPesquisa' => $filtroPesquisa,
+                'users' => $users
             ]
         );
     }
