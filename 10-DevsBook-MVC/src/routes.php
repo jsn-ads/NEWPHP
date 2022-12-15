@@ -33,4 +33,6 @@ $router->get('/amigos'             ,'ProfileController@friends');
 
 $router->get('/configuracao'       ,'ConfigController@index');
 
+$router->post('/configuracao'      ,'ConfigController@add');
+
 $router->get('/sair'               ,'LoginController@logout');

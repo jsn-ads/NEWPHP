@@ -195,6 +195,8 @@ header .head-side {
 
 .feed .row {
     display:flex;
+    padding-right: 25px;
+    padding-left: 25px;
 }
 .feed .column {
     display:flex;
@@ -435,6 +437,26 @@ header .head-side {
 
 .button:hover {
     background-color:#477dbb;
+}
+
+.flash{
+    border: 2px solid red;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.flash_true{
+    border: 2px solid skyblue;
+    background-color: skyblue;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
 }
 
 @media (max-width: 992px) {

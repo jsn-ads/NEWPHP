@@ -179,6 +179,12 @@
             return $token;
         }
 
+        
+        public static function editUser($id, $nome, $birth_date, $email, $city, $work, $password)
+        {
+            return true;
+        }
+
         // metodo para calcular idade
         public static function ageYears($birthdate)
         {
