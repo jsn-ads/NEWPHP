@@ -179,9 +179,35 @@
             return $token;
         }
 
-        
-        public static function editUser($id, $nome, $birth_date, $email, $city, $work, $password)
-        {
+        // metodo para editar usuario
+        public static function editUser($id, $email, $password, $nome, $birth_date, $city, $work)
+        {          
+            if(empty($password))
+            {
+                User::update()->
+                    set('email' ,$email)->
+                    set('nome'  ,$nome)->
+                    set('birth_date' ,$birth_date)->
+                    set('city' ,$city)->
+                    set('work' ,$work)->
+                    where('id',$id)->
+                execute();
+
+            }else{
+
+                $hash = password_hash($password , PASSWORD_DEFAULT);
+            
+                User::update()->
+                    set('email' ,$email)->
+                    set('nome'  ,$nome)->
+                    set('password' ,$hash)->
+                    set('birth_date' ,$birth_date)->
+                    set('city' ,$city)->
+                    set('work' ,$work)->
+                    where('id',$id)->
+                execute();
+            }
+            
             return true;
         }
 

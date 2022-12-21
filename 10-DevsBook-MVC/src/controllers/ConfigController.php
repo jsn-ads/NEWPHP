@@ -20,6 +20,7 @@ class ConfigController extends Controller
         }
     }
 
+    //Carrega tela de configuração
     public function index() 
     {
 
@@ -48,15 +49,16 @@ class ConfigController extends Controller
 
     }
 
-    public function add()
+    //Edição de Usuario
+    public function edit()
     {
-        $id = $this->loggedUser->id;
-        $nome =          filter_input(INPUT_POST, 'nome');
-        $birth_date =    filter_input(INPUT_POST, 'birth_date');
-        $email =         filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-        $city =          filter_input(INPUT_POST, 'city');
-        $work =          filter_input(INPUT_POST, 'work');
-        $password =      filter_input(INPUT_POST, 'password');
+        $id            = $this->loggedUser->id;
+        $nome          = filter_input(INPUT_POST, 'nome');
+        $birth_date    = filter_input(INPUT_POST, 'birth_date');
+        $email         = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $city          = filter_input(INPUT_POST, 'city');
+        $work          = filter_input(INPUT_POST, 'work');
+        $password      = filter_input(INPUT_POST, 'password');
         $conf_password = filter_input(INPUT_POST, 'conf_password');
 
         if(empty($nome))
@@ -84,20 +86,28 @@ class ConfigController extends Controller
             $_SESSION['flash'] .= 'Informe o local de trabalho<br>';   
         }
 
-        if(empty($password))
+        if(!empty($password))
         {
-            $_SESSION['flash'] .= 'Informe a senha<br>';   
-        }else if($password != $conf_password)
+            if($password != $conf_password)
+            {
+                $_SESSION['flash'] .= 'as senhas não conhecidem<br>';   
+            }
+        }
+
+        if($this->loggedUser->email != $email)
         {
-            $_SESSION['flash'] .= 'as senhas não conhecidem<br>';   
+            if(UserHelpers::emailExists($email))
+            {
+                $_SESSION['flash'] .= $email.' ja esta sendo utilizado<br>';
+            }   
         }
 
         if(!empty($_SESSION['flash']))
         {
             $this->redirect('/configuracao');
         }
-
-        if(UserHelpers::editUser($id, $nome, $birth_date, $email, $city, $work, $password)){
+        
+        if(UserHelpers::editUser($id, $email, $password, $nome, $birth_date, $city, $work)){
             $_SESSION['flash_true'] .= 'Dados atualizados';   
         }else{
             $_SESSION['flash'] .= 'Erro ao atualizar os dados';   
