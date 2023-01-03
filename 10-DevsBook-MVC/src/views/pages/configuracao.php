@@ -6,8 +6,6 @@
     
    
     <section class="feed mt-10">
-    
-        <hr/>
 
         <form action="<?=$base;?>/configuracao" method="post">
             
@@ -27,6 +25,17 @@
                 </div>
             <?php endif; ?>
 
+            <div class="form-group col-8">
+                Novo Avatar:<br/>
+                <input type="file" name="avatar" /><br/>
+            </div>
+
+            <div class="form-group col-8">
+                Novo Cover:<br/>
+                <input type="file" name="cover" /><br/>
+            </div>
+
+            <hr/>
 
             <div class="form-group col-8">
                 <label for="my-input">Nome Completo : </label>
