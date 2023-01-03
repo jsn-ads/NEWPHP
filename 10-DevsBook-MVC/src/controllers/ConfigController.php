@@ -102,6 +102,33 @@ class ConfigController extends Controller
             }   
         }
 
+        // AVATAR
+
+        if(isset($_FILES['avatar']) && !empty($_FILES['avatar']['tmp_name']))
+        {
+            $newAvatar = $_FILES['avatar'];
+
+            if(in_array($newAvatar['type'],['image/jpeg','image/jpg', 'image/png']))
+            {
+                $avatarName = cutImage($newAvatar , 200, 200, 'media/avatars');
+                $updateFields['avatar'] = $avatarName;
+            }
+        }
+
+        // COVER
+
+        if(isset($_FILES['cover']) && !empty($_FILES['cover']['tmp_name']))
+        {
+            $newCover = $_FILES['cover'];
+
+            if(in_array($newCover['type'],['image/jpeg','image/jpg', 'image/png']))
+            {
+                $CoverName = cutImage($newCover , 850, 310, 'media/covers');
+                $updateFields['cover'] = $CoverName;
+            }
+        }
+
+
         if(!empty($_SESSION['flash']))
         {
             $this->redirect('/configuracao');
@@ -114,6 +141,11 @@ class ConfigController extends Controller
         }
 
         $this->redirect('/configuracao');
+
+    }
+
+    private function cutImage($file , $w, $h, $folder)
+    {
 
     }
 }
