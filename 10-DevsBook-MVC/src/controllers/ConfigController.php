@@ -60,6 +60,7 @@ class ConfigController extends Controller
         $work          = filter_input(INPUT_POST, 'work');
         $password      = filter_input(INPUT_POST, 'password');
         $conf_password = filter_input(INPUT_POST, 'conf_password');
+        $updateFields = array();
 
         if(empty($nome))
         {
@@ -110,10 +111,13 @@ class ConfigController extends Controller
 
             if(in_array($newAvatar['type'],['image/jpeg','image/jpg', 'image/png']))
             {
-                $avatarName = cutImage($newAvatar , 200, 200, 'media/avatars');
-                $updateFields['avatar'] = $avatarName;
+                $avatarPath = $this->cutImage($newAvatar , 200, 200, 'media/avatars');
+                $updateFields['avatar'] = $avatarPath;
             }
         }
+        // else{
+        //     $_SESSION['flash'] .= ' Não foi possivel atualizar Imagem do Avatar, verifique o formato<br>';
+        // }
 
         // COVER
 
@@ -123,10 +127,13 @@ class ConfigController extends Controller
 
             if(in_array($newCover['type'],['image/jpeg','image/jpg', 'image/png']))
             {
-                $CoverName = cutImage($newCover , 850, 310, 'media/covers');
-                $updateFields['cover'] = $CoverName;
+                $CoverPath = $this->cutImage($newCover , 850, 310, 'media/covers');
+                $updateFields['cover'] = $CoverPath;
             }
         }
+        // else{
+        //     $_SESSION['flash'] .= ' Não foi possivel atualizar Imagem do Cover, verifique o formato<br>';
+        // }
 
 
         if(!empty($_SESSION['flash']))
@@ -134,6 +141,11 @@ class ConfigController extends Controller
             $this->redirect('/configuracao');
         }
         
+
+        if(UserHelpers::editFields($id, $updateFields)){
+            $_SESSION['flash_true'] .= 'Foto atualizada';   
+        }
+
         if(UserHelpers::editUser($id, $email, $password, $nome, $birth_date, $city, $work)){
             $_SESSION['flash_true'] .= 'Dados atualizados';   
         }else{
@@ -165,7 +177,7 @@ class ConfigController extends Controller
         $x = $x < 0 ? $x / 2 : $x;
         $y = $y < 0 ? $y / 2 : $y;
 
-        $finalImage = imagecreatetruecolor($w, $h);
+        $finalImage = imagecreatetruecolor(200 , 200);
 
         switch($file['type'])
         {

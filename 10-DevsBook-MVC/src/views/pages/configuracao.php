@@ -7,7 +7,7 @@
    
     <section class="feed mt-10">
 
-        <form action="<?=$base;?>/configuracao" method="post">
+        <form action="<?=$base;?>/configuracao" method="post" enctype="multipart/form-data">
             
             <?php if(!empty($flash)): ?>
                 <div class="form-group col-8">

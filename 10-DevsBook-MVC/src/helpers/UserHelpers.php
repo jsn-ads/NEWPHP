@@ -211,6 +211,39 @@
             return true;
         }
 
+        public static function editFields($id, $updateFields)
+        {
+            if(!empty($updateFields['avatar'] && !empty($updateFields['cover'])))
+            {
+                User::update()->
+                    set('avatar',$updateFields['avatar'])->
+                    set('cover' ,$updateFields['cover'])->
+                    where('id'  ,$id)->
+                execute();
+            }
+            else
+            {
+                if(!empty($updateFields['avatar']))
+                {
+                    User::update()->
+                        set('avatar',$updateFields['avatar'])->
+                        where('id'  ,$id)->
+                    execute();
+
+                }
+                else
+                {
+                    User::update()->
+                        set('cover' ,$updateFields['cover'])->
+                        where('id'  ,$id)->
+                    execute();
+
+                }
+            }
+            
+            return true;
+        }
+
         // metodo para calcular idade
         public static function ageYears($birthdate)
         {

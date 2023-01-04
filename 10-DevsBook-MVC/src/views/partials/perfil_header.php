@@ -5,7 +5,7 @@
             <div class="profile-info m-20 row">
                 <div class="profile-info-avatar">
                     <a href="<?=$base;?>/perfil/<?=$user->id;?>">
-                        <img src="<?=$base;?>/media/avatars/avatar.jpg" />
+                        <img src="<?=$base;?>/media/avatars/<?=$user->avatar;?>" />
                     </a>
                 </div>
                 <div class="profile-info-name">
