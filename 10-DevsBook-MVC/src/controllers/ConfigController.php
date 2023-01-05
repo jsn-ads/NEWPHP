@@ -113,12 +113,11 @@ class ConfigController extends Controller
             {
                 $avatarPath = $this->cutImage($newAvatar , 200, 200, 'media/avatars');
                 $updateFields['avatar'] = $avatarPath;
+            }else{
+                $_SESSION['flash'] .= ' Não foi possivel atualizar Imagem do Avatar, verifique o formato<br>';
             }
         }
-        // else{
-        //     $_SESSION['flash'] .= ' Não foi possivel atualizar Imagem do Avatar, verifique o formato<br>';
-        // }
-
+    
         // COVER
 
         if(isset($_FILES['cover']) && !empty($_FILES['cover']['tmp_name']))
@@ -129,13 +128,11 @@ class ConfigController extends Controller
             {
                 $CoverPath = $this->cutImage($newCover , 850, 310, 'media/covers');
                 $updateFields['cover'] = $CoverPath;
+            }else{
+                $_SESSION['flash'] .= ' Não foi possivel atualizar Imagem do Cover, verifique o formato<br>';
             }
         }
-        // else{
-        //     $_SESSION['flash'] .= ' Não foi possivel atualizar Imagem do Cover, verifique o formato<br>';
-        // }
-
-
+     
         if(!empty($_SESSION['flash']))
         {
             $this->redirect('/configuracao');
