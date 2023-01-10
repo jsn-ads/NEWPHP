@@ -3,6 +3,7 @@
 namespace src\helpers;
 
 use \src\models\Post;
+use \src\models\Post_like;
 use \src\models\User;
 use \src\models\UserRelation;
 
@@ -147,8 +148,17 @@ class PostHelpers
             $post->user->avatar =   $sql['avatar'];
 
             // like
-            $post->likeCount    =   0;
-            $post->liked        =   false;
+
+            $likes = Post_Like::select()->where('id_post', $item['id'])->get();
+            
+            //verifica se proprietario do post deu like
+            $mylike = Post_Like::select()->
+                                    where('id_post', $item['id'])->
+                                    where('id_user', $idUser)->
+                                get();
+
+            $post->likeCount    =   count($likes);
+            $post->liked        =   (count($mylike) > 0) ? true : false;
 
             // comments
             $post->comments     =   [];
