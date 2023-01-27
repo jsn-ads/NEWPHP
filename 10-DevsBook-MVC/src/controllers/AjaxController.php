@@ -1,4 +1,7 @@
 <?php
+
+// teste de git 
+
 namespace src\controllers;
 
 use \core\Controller;
@@ -22,3 +25,4 @@ class AjaxController extends Controller
     }
     
 }
+
