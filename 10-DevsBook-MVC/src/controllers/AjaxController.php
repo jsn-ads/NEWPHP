@@ -23,6 +23,18 @@ class AjaxController extends Controller
             exit;
         }
     }
+
+    public function like($atts)
+    {
+        $id = $atts['id'];
+
+        if(PostHelpers::isliked($id, $this->loggedUser->id))
+        {
+            PostHelpers::deleteLike($id, $this->loggedUser->id);
+        }else{
+            PostHelpers::addLike($id, $this->loggedUser->id);
+        }
+    }
     
 }
 

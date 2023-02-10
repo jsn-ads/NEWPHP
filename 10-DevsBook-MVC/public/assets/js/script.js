@@ -50,6 +50,7 @@ document.querySelector('.feed-new-input').addEventListener('blur', function(obj)
 if(document.querySelector('.like-btn'))
 {
     document.querySelectorAll('.like-btn').forEach(item=>{
+    
         item.addEventListener('click', ()=>{
            
             let id = item.closest('.feed-item').getAttribute('data-id');
@@ -65,7 +66,7 @@ if(document.querySelector('.like-btn'))
                 item.classList.remove('on');
                 item.innerText = --count;
             }
-
+             console.log(id);
             fetch(BASE+'/ajax/like/'+id);
         });
     });

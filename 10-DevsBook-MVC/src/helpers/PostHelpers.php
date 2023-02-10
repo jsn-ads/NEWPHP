@@ -158,7 +158,7 @@ class PostHelpers
                                 get();
 
             $post->likeCount    =   count($likes);
-            $post->liked        =   (count($mylike) > 0) ? true : false;
+            $post->liked        =   self::isliked($item['id'], $idUser);
 
             // comments
             $post->comments     =   [];
@@ -168,5 +168,37 @@ class PostHelpers
         }
 
         return $posts;
+    }
+
+    public static function isliked($id, $loggerUserId)
+    {   
+        $mylike = Post_Like::select()->
+                                    where('id_post', $id)->
+                                    where('id_user', $loggerUserId)->
+                                get();
+
+        if(count($mylike) > 0)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function addLike($id, $loggerUserId)
+    {
+        Post_Like::insert([
+            'id_post' => $id,
+            'id_user' => $loggerUserId,
+            'created_at' => date('Y-m-d H:i:s')
+        ])->execute();
+    }
+
+    public static function deleteLike($id, $loggerUserId)
+    {
+        Post_Like::delete()
+                    ->where('id_post', $id)
+                    ->where('id_user', $loggerUserId)               
+                ->execute();
     }
 }
