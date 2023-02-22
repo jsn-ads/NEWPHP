@@ -4,6 +4,7 @@ namespace src\helpers;
 
 use \src\models\Post;
 use \src\models\Post_like;
+use \src\models\Post_Comment;
 use \src\models\User;
 use \src\models\UserRelation;
 
@@ -160,10 +161,18 @@ class PostHelpers
             $post->likeCount    =   count($likes);
             $post->liked        =   self::isliked($item['id'], $idUser);
 
-            // comments
-            $post->comments     =   [];
+            // comentarios
+            $post->comments     =   Post_Comment::select()->
+                                                    where('id_post', $item['id'])->
+                                                get();
 
-            // retun post
+            foreach($post->comments as $key => $comment)
+            {
+                $post->comments[$key]['user'] = User::select()->
+                                                        where('id', $comment['id_user'])->
+                                                    one();
+            }
+            // retorna os post
             $posts[] = $post;
         }
 
