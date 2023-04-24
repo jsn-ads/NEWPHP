@@ -194,6 +194,16 @@ class PostHelpers
         }
     }
 
+    public static function addComment($id, $txt, $loggerUserId)
+    {
+        Post_Comment::insert([
+            'id_post' => $id,
+            'id_user' => $loggerUserId,
+            'created_at' => date('Y-m-d H:i:s'),
+            'body' => $txt
+        ])->execute();
+    }
+
     public static function addLike($id, $loggerUserId)
     {
         Post_Like::insert([

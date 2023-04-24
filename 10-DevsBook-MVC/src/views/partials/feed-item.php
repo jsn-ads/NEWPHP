@@ -38,18 +38,20 @@
 
         <div class="feed-item-comments">
 
-            <?php foreach($data->comments as $item):?>
-                <div class="fic-item row m-height-10 m-width-20">
-                    <div class="fic-item-photo">
-                        <a href="<?=$base;?>/perfil/<?=$item['user']['id'];?>"><img src="<?=$base;?>/media/avatars/<?=$item['user']['avatar'];?>" /></a>
+            <div class="feed-item-comments-area">
+                <?php foreach($data->comments as $item):?>
+                    <div class="fic-item row m-height-10 m-width-20">
+                        <div class="fic-item-photo">
+                            <a href="<?=$base;?>/perfil/<?=$item['user']['id'];?>"><img src="<?=$base;?>/media/avatars/<?=$item['user']['avatar'];?>" /></a>
+                        </div>
+                        <div class="fic-item-info">
+                            <a href="<?=$base;?>"><?= $item['user']['nome'];?></a>
+                            <?=$item['body'];?>
+                        </div>
                     </div>
-                    <div class="fic-item-info">
-                        <a href="<?=$base;?>"><?= $item['user']['nome'];?></a>
-                        <?=$item['body'];?>
-                    </div>
-                </div>
-            <?php endforeach;?>
-            
+                <?php endforeach;?>
+            </div>
+
             <div class="fic-answer row m-height-10 m-width-20">
                 <div class="fic-item-photo">
                     <a href="<?=$base;?>/perfil/<?=$data->id_user;?>"><img src="<?=$base;?>/media/avatars/<?= $loggedUser->avatar;?>" /></a>
