@@ -6,8 +6,12 @@
             </div>
             <div class="feed-new-input-placeholder">O que você está pensando, <?= $user->nome;?></div>
             <div class="feed-new-input" contenteditable="true"></div>
+            <div class="feed-new-photo">
+                <img src="<?=$base;?>/assets/images/photo.png"/>
+                <input type="file" name="photo" class="feed-new-file"  accept="image/png,image/jpeg,image/jpg">
+            </div>
             <div class="feed-new-send">
-                <img src="<?=$base;?>/assets/images/send.png" />
+                <img src="<?=$base;?>/assets/images/send.png"/>
             </div>
 
             <form class="feed-new-form" action="<?=$base;?>/post/new" method="POST">
@@ -22,6 +26,8 @@
     let feedInput  = document.querySelector('.feed-new-input');
     let feedSubmit = document.querySelector('.feed-new-send');
     let feedForm   = document.querySelector('.feed-new-form');
+    let feedPhoto  = document.querySelector('.feed-new-photo');
+    let feedFile   = document.querySelector('.feed-new-file');
 
     feedSubmit.addEventListener('click', function(obj)
     {
@@ -34,6 +40,14 @@
             feedForm.submit();
         }
 
+    });
+
+    feedPhoto.addEventListener('click', function(){
+        feedFile.click();
+    });
+
+    feedFile.addEventListener('change', function(){
+        console.log("Fotos", feedFile.files);
     });
 
 </script>
