@@ -42,12 +42,33 @@
 
     });
 
-    feedPhoto.addEventListener('click', function(){
+    feedPhoto.addEventListener('click', function()
+    {
         feedFile.click();
     });
 
-    feedFile.addEventListener('change', function(){
-        console.log("Fotos", feedFile.files);
+    feedFile.addEventListener('change',async function()
+    {
+        let photo = feedFile.files[0];
+
+        let formData = new FormData();
+        formData.append('photo', photo);
+
+        let req = await fetch(BASE+'/ajax/upload',
+        {
+            method: 'POST',
+            body: formData
+        })
+
+        let json = await req.json();
+
+        if(json.error != '')
+        {
+            alert(json.error);
+        }
+
+        // window.location.href = window.location.href;
+
     });
 
 </script>
