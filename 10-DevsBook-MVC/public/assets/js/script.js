@@ -45,6 +45,28 @@ document.querySelector('.feed-new-input').addEventListener('blur', function(obj)
     }
 });
 
+// Metodo para mostra e ocultar botao de Ações
+
+function closeFeedWindow(){
+    document.querySelectorAll('.feed-item-more-window').forEach(item=>{
+        item.style.display = 'none';
+    });
+
+    document.removeEventListener('click', closeFeedWindow);
+}
+
+document.querySelectorAll('.feed-item-head-btn').forEach(item=>{
+    item.addEventListener('click', ()=>{
+        closeFeedWindow();
+        item.querySelector('.feed-item-more-window').style.display = 'block';
+
+        setTimeout(() => {
+           document.addEventListener('click', closeFeedWindow); 
+        }, 500);
+    });
+});
+
+
 // Metodo para adicionar Like via Ajax
 
 if(document.querySelector('.like-btn'))
