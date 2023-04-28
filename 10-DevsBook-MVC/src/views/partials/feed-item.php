@@ -13,7 +13,7 @@
                             case 'text';
                                 echo 'fez um post';
                                 break;
-                            case 'foto';
+                            case 'photo';
                                 echo 'postou uma foto';
                                 break;
                         }
@@ -28,7 +28,17 @@
         </div>
 
         <div class="feed-item-body mt-10 m-width-20">
-            <?=nl2br($data->body);?>
+            <?php
+                switch($data->type)
+                {
+                    case 'text';
+                        echo nl2br($data->body);
+                        break;
+                    case 'photo';
+                        echo '<img src="'.$base.'/media/uploads/'.$data->body.'"/>';
+                        break;
+                }
+            ?>
         </div>
 
         <div class="feed-item-buttons row mt-20 m-width-20">
