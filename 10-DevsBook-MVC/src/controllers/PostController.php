@@ -39,7 +39,7 @@ class PostController extends Controller
         {
             $idPost = $atts['id'];
 
-            PostHandler::delete(
+            PostHelpers::delete(
                 $idPost,
                 $this->loggedUser->id
             );

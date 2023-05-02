@@ -42,3 +42,5 @@ $router->get('/ajax/like/{id}'     ,'AjaxController@like');
 $router->post('/ajax/comment'      ,'AjaxController@comment');
 
 $router->post('/ajax/upload'       ,'AjaxController@upload');
+
+$router->get('/post/{id}/delete'   ,'PostController@delete');

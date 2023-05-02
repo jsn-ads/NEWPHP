@@ -226,16 +226,29 @@ class PostHelpers
 
         $post = Post::select()
                         ->where('id', $id)
-                        ->where('id_user', $loggerUserId)
+                        ->where('id_user', $loggedUserId)
                     ->get();
 
         if(count($post) > 0)
         {
             $post = $post[0];
 
-            PostLike::delete()->where('id_post',$id)->execute();
-            PostComment::delete()->where('id_post',$id)->execute();
+            Post_Like::delete()->where('id_post',$id)->execute();
+            Post_Comment::delete()->where('id_post',$id)->execute();
+
+            if($post['type'] === 'photo')
+            {   
+
+                $img = __DIR__.'/../../public/media/uploads/'.$post['body'];
+
+                if(file_exists($img))
+                {
+                    unlink($img);
+                }
+            }
+
+            Post::delete()->where('id',$id)->execute();
         }
-        
+
     }
 }
