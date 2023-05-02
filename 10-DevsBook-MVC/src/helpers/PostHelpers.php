@@ -220,4 +220,22 @@ class PostHelpers
                     ->where('id_user', $loggerUserId)               
                 ->execute();
     }
+
+    public static function delete($id, $loggedUserId)
+    {
+
+        $post = Post::select()
+                        ->where('id', $id)
+                        ->where('id_user', $loggerUserId)
+                    ->get();
+
+        if(count($post) > 0)
+        {
+            $post = $post[0];
+
+            PostLike::delete()->where('id_post',$id)->execute();
+            PostComment::delete()->where('id_post',$id)->execute();
+        }
+        
+    }
 }
