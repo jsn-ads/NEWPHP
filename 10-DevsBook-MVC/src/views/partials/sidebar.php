@@ -29,7 +29,7 @@
                     <a href="<?=$base;?>/amigos">Amigos</a>
                 </div>
                 <div class="menu-item-badge">
-                    33
+                    
                 </div>
             </div>
         </a>
