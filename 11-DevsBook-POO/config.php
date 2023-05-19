@@ -2,7 +2,7 @@
 
     session_start();
 
-    $base = 'http://localhost/devsbookoo';
+    $base = 'http://localhost/PROJETOS/NEWPHP/11-DevsBook-POO';
 
     $db_name = 'devsbookpoo';
     $db_host = '127.0.0.1';
