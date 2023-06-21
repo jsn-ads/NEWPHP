@@ -16,6 +16,8 @@
         }
     }
 
+    $_SESSION['flash'] = 'Usuario/Senha invalido';
+
     header("Location: ".$base."/login.php");
     exit;
 ?>
