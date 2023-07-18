@@ -54,6 +54,12 @@ class Auth
 
        return false;
     }
+
+    public function emailExists($email)
+    {
+        $userDao = new UserDaoMysq($this->pdo);
+        return $userDao->findByEmail($email) ? true : false;
+    }
 }
 
 ?>

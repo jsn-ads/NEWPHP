@@ -9,6 +9,36 @@
 
     if($name && $email && $password && $birthdate)
     {
+        $auth = new Auth($pdo, $base);
+
+        // validando a data
+        $birthdate = explode('/', $birthdate);
+
+        if(count($birthdate) != 3)
+        {
+            $_SESSION['flash'] = 'Data nascimento Invalida';
+            header("Location: ".$base."/signup.php");
+            exit;
+        }
+
+        $birthdate = $birthdate[2].'-'.$birthdate[1].'-'.$birthdate[0];
+
+        if(strtotime($birthdate) === false)
+        {
+            $_SESSION['flash'] = 'Data nascimento Invalida';
+            header("Location: ".$base."/signup.php");
+            exit;
+        }
+
+        if($auth->emailExists($email) === false)
+        {
+
+        }else{
+            $_SESSION['flash'] = 'E-mail ja cadastrado';
+            header("Location: ".$base."/signup.php");
+            exit;
+        }
+
 
     }
 
