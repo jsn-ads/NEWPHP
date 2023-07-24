@@ -80,15 +80,40 @@
                 WHERE id  = :id"
             );
 
-            $sql->bindValue(':email', $u->email);
-            $sql->bindValue(':password', $u->password);
-            $sql->bindValue(':email', $u->email);
-            $sql->bindValue(':email', $u->email);
-            $sql->bindValue(':email', $u->email);
-            $sql->bindValue(':email', $u->email);
-            $sql->bindValue(':email', $u->email);
-            $sql->bindValue(':email', $u->email);
+            $sql->bindValue(':email'    , $u->email);
+            $sql->bindValue(':password' , $u->password);
+            $sql->bindValue(':name'     , $u->name);
+            $sql->bindValue(':birthdate', $u->birthdate);
+            $sql->bindValue(':city'     , $u->city);
+            $sql->bindValue(':work'     , $u->work);
+            $sql->bindValue(':avatar'   , $u->avatar);
+            $sql->bindValue(':cover'    , $u->cover);
+            $sql->bindValue(':token'    , $u->token);
+            $sql->bindValue(':id'       , $u->id);
+            $sql->execute();
 
+            return true;
+
+        }
+
+        public function insert(User $u)
+        {
+            $sql = $this->pdo->prepare("INSERT INTO users SET
+                email       = :email,
+                password    = :password,
+                name        = :name,
+                birthdate   = :birthdate,
+                token       = :token",
+            );
+
+            $sql->bindValue(':email'    , $u->email);
+            $sql->bindValue(':password' , $u->password);
+            $sql->bindValue(':name'     , $u->name);
+            $sql->bindValue(':birthdate', $u->birthdate);
+            $sql->bindValue(':token'    , $u->token);
+            $sql->execute();
+
+            return true;
         }
     }
 ?>

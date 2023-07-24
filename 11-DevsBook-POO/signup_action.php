@@ -9,6 +9,7 @@
 
     if($name && $email && $password && $birthdate)
     {
+        
         $auth = new Auth($pdo, $base);
 
         // validando a data
@@ -31,14 +32,15 @@
         }
 
         if($auth->emailExists($email) === false)
-        {
-
+        {   
+            $auth->registerUser($name, $email, $password, $birthdate);
+            header("Location:".$base);
+            exit;
         }else{
             $_SESSION['flash'] = 'E-mail ja cadastrado';
             header("Location: ".$base."/signup.php");
             exit;
         }
-
 
     }
 
