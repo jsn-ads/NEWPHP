@@ -48,6 +48,7 @@
 
         public function findByEmail($email)
         {
+            
             if(!empty($email))
             {
                 $sql = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
@@ -98,6 +99,7 @@
 
         public function insert(User $u)
         {
+            
             $sql = $this->pdo->prepare("INSERT INTO users SET
                 email       = :email,
                 password    = :password,

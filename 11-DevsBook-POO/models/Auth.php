@@ -57,11 +57,12 @@ class Auth
 
     public function emailExists($email)
     {
-        $userDao = new UserDaoMysq($this->pdo);
+        $userDao = new UserDaoMysql($this->pdo);
+        
         return $userDao->findByEmail($email) ? true : false;
     }
 
-    public function registerUser($name, $email, $password, $birdthdate)
+    public function registerUser($name, $email, $password, $birthdate)
     {
         $userDao = new UserDaoMysql($this->pdo);
 
