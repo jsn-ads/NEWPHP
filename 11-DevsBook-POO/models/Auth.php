@@ -11,6 +11,7 @@ class Auth
     {
         $this->pdo = $pdo;
         $this->base = $base;
+        $this->dao = new UserDaoMysql($this->pdo);
     }
 
     public function checkToken()
@@ -18,9 +19,8 @@ class Auth
         if(!empty($_SESSION['token']))
         {
             $token = $_SESSION['token'];
-
-            $userDao = new UserDaoMysql($this->pdo);
-            $user = $userDao->findByToken($token);
+            
+            $user =  $this->dao->findByToken($token);
 
             if($user)
             {
@@ -34,8 +34,7 @@ class Auth
 
     public function validateLogin($email, $password)
     {
-       $userDao = new UserDaoMysql($this->pdo);
-
+      
        $user = $userDao->findByEmail($email);
 
        if($user)
@@ -56,15 +55,12 @@ class Auth
     }
 
     public function emailExists($email)
-    {
-        $userDao = new UserDaoMysql($this->pdo);
-        
-        return $userDao->findByEmail($email) ? true : false;
+    {   
+        return  $this->dao->findByEmail($email) ? true : false;
     }
 
     public function registerUser($name, $email, $password, $birthdate)
     {
-        $userDao = new UserDaoMysql($this->pdo);
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $token = md5(time().rand(0, 9999));
@@ -76,7 +72,7 @@ class Auth
         $newUser->birthdate = $birthdate;
         $newUser->token = $token;
 
-        $userDao->insert($newUser);
+        $this->dao->insert($newUser);
 
         $_SESSION['token'] = $token;
     }
