@@ -35,7 +35,7 @@ class Auth
     public function validateLogin($email, $password)
     {
       
-       $user = $userDao->findByEmail($email);
+       $user = $this->dao->findByEmail($email);
 
        if($user)
        {
@@ -45,7 +45,7 @@ class Auth
 
                 $_SESSION['token'] = $token;
                 $user->token = $token;
-                $userDao->update($user);
+                $this->dao->update($user);
 
                 return true;
             }
