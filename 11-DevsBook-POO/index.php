@@ -4,6 +4,7 @@
 
     $auth = new Auth($pdo, $base);
     $userInfo = $auth->checkToken();
+    $activeMenu = 'home';
 
     require 'partials/header.php';
     require 'partials/menu.php';
