@@ -1,14 +1,14 @@
 <?php
     require 'config.php';
     require 'models/Auth.php';
-    require 'dao/UserRelationDaoMysql.php';
+    require 'dao/PostDaoMysql.php';
 
     $auth = new Auth($pdo, $base);
     $userInfo = $auth->checkToken();
     $activeMenu = 'home';
 
-    $urDao = new UserRelationDaoMysql($pdo);
-    $userList = $urDao->getRelationsFrom($userInfo->id);
+    $postDao = new PostDaoMysql($pdo);
+    $feed = $postDao->getHomeFeed($userInfo->id);
 
     require 'partials/header.php';
     require 'partials/menu.php';
