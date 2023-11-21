@@ -1,8 +1,9 @@
 <?php
-    require 'models/UserRelation.php';
+    require_once 'models/UserRelation.php';
 
     class UserRelationDaoMysql implements UserRelationDao
     {
+
         private $pdo;
 
         public function __construct(PDO $driver)
@@ -17,6 +18,7 @@
 
         public function getRelationsFrom($id)
         {
+
             $users = [$id];
 
             $sql = $this->pdo->prepare("SELECT user_to FROM userrelations WHERE user_from = :user_from");
