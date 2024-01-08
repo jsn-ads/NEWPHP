@@ -60,7 +60,6 @@
 
         private function _postListToObject($post_list, $id_user)
         {
-            $posts[] = [];
 
             $userDao = new UserDaoMysql($this->pdo);
 
@@ -90,7 +89,6 @@
 
                 $posts[] = $n;
             }
-
             return $posts;
         }
     }

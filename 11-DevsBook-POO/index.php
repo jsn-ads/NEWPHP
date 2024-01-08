@@ -18,8 +18,13 @@
     <div class="row">
         <div class="column pr-5">
             <?php require 'partials/feed-editor.php';?>
+            
+            <?php foreach($feed as $item):?>
+                <?php require 'partials/feed-item.php';?>
+            <?php endforeach;?>
+
         </div>
-        <div class="column pl-5">
+        <div class="column side pl-5">
             <div class="box banners">
                 <div class="box-header">
                     <div class="box-header-text">Patrocinios</div>
