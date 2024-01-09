@@ -81,11 +81,11 @@
                 $n->user = $userDao->findById($post_item['id_user']);
 
                 //Informações sobre LIKE]
-                // $newPost->likeCount = 0;
-                // $newPost->liked = false;
+                $n->likeCount = 0;
+                $n->liked = false;
 
                 //Informaçoes sobre COMMENTS
-                // $newPost->comments = [];
+                $n->comments = [];
 
                 $posts[] = $n;
             }
