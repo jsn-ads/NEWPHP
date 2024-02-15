@@ -2,10 +2,25 @@
     require 'config.php';
     require 'models/Auth.php';
     require 'dao/PostDaoMysql.php';
+    require 'dao/UserDaoMysql.php';
 
     $auth = new Auth($pdo, $base);
     $userInfo = $auth->checkToken();
     $activeMenu = 'profile';
+
+    $id = filter_input(INPUT_GET, "id");
+    if(!$id){
+        $id = $userInfo->id;
+    }
+
+    $postDao = new PostDaoMysql($pdo);
+    $userDao = new UserDaoMysql($pdo);
+
+    //Pegar informações do Usuario
+
+    //Pegar o FEED do Usuario
+
+    //Verificar se eu Sigo o Usuario
 
     require 'partials/header.php';
     require 'partials/menu.php';
