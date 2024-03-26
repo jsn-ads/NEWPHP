@@ -39,7 +39,8 @@
             //Listar o usuarios que eu sigo
             $urDao = new UserRelationDaoMysql($this->pdo);
 
-            $userList = $urDao->getRelationsFrom($id_user);
+            $userList = $urDao->getFollowing($id_user);
+            $userList[] = $id_user;
 
             //Pegar os posts ordenando pela data
             $sql = $this->pdo->query(
