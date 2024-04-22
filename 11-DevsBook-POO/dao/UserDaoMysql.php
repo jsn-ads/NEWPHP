@@ -31,11 +31,19 @@
 
                 //Followers = Quem segue o usuario
                 $user->followers = $urDaoMysql->getFollowers($user->id);
+                foreach($user->followers as $key => $follower_id){
+                    $newUser = $this->findById($follower_id);
+                    $user->followers[$key] = $newUser;
+                }
 
                 //Following = Quem o usuario segue
                 $user->following = $urDaoMysql->getFollowing($user->id);
-                //Fotos
+                foreach($user->following as $key => $following_id){
+                    $newUser = $this->findById($following_id);
+                    $user->following[$key] = $newUser;
+                }
 
+                //Fotos
                 $user->photos = [];
             }
 
