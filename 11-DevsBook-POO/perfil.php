@@ -1,7 +1,7 @@
 <?php
-    require 'config.php';
-    require 'models/Auth.php';
-    require 'dao/PostDaoMysql.php';
+    require_once 'config.php';
+    require_once 'models/Auth.php';
+    require_once 'dao/PostDaoMysql.php';
 
     $auth = new Auth($pdo, $base);
     $userInfo = $auth->checkToken();
@@ -144,11 +144,11 @@
                         <?php foreach($user->photos as $photo):?>
                             <div class="user-photo-item">
                                 <a href="#modal-1" rel="modal:open">
-                                    <img src="media/uploads/1.jpg" />
+                                    <img src="<?=$base;?>/media/uploads/<?=$photo->body;?>" />
                                 </a>
 
                                 <div id="modal-1" style="display:none">
-                                    <img src="media/uploads/1.jpg" />
+                                    <img src="<?=$base;?>/media/uploads/<?=$photo->body;?>" />
                                 </div>
                             </div>
                         <?php endforeach;?>
