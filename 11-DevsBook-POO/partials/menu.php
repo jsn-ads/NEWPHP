@@ -33,8 +33,8 @@
                 </div>
             </div>
         </a>
-        <a href="<?=$base;?>/fotos.php">
-            <div class="menu-item <?=$activeMenu=='home'?'photos':'';?>">
+        <a href="<?=$base;?>/photos.php">
+            <div class="menu-item <?=$activeMenu=='photos'?'active':'';?>">
                 <div class="menu-item-icon">
                     <img src="<?=$base;?>/assets/images/photo.png" width="16" height="16" />
                 </div>
