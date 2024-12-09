@@ -469,6 +469,42 @@ header .head-side {
 }
 
 
+.config-form{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.config-form label{
+    margin: 2px 0;
+}
+
+.config-form input{
+    margin: 2px 0;
+    padding: 10px 15px;
+
+    font-size: 14px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.config-form button{
+    margin: 5px 0;
+    padding: 7px 0;
+}
+
+.button{
+    width: 100px;
+    height: 30px;
+    border: 0;
+    padding: 10px 20px;
+    background-color: #4a76a8;
+    border-radius: 10px;
+    color: #FFF;
+    font-size: 15px;
+    box-shadow: 0px 0px 3px #999;
+}
+
 @media (max-width: 992px) {
     header .head-side-right {
         display:none !important;
@@ -557,3 +593,6 @@ header .head-side {
     }
 
 }
+
+
+
