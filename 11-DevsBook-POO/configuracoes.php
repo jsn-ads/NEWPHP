@@ -22,38 +22,40 @@
             Novo Avatar:
         </label>
         <input id="config.avatar" type="file" name="avatar">
+        <img class="mini-avatar" src="<?=$base;?>/media/avatars/<?=$userInfo->avatar;?>" alt="">
 
         <label for="config.couver">
             Nova Capa:
         </label>
         <input id="config.couver"type="file" name="cover">
+        <img class="mini-cover" src="<?=$base;?>/media/covers/<?=$userInfo->cover;?>" alt="">
 
         <hr>
 
         <label for="config.name">
             Nome Completo:
         </label>
-        <input id="config.name" type="text" name="name">
+        <input id="config.name" type="text" name="name" value="<?=$userInfo->name;?>">
 
         <label for="config.email">
             E-mail:
         </label>
-        <input id="config.email" type="e-mail" name="email">
+        <input id="config.email" type="e-mail" name="email" value="<?=$userInfo->email;?>">
 
         <label for="config.birthdate">
             Data de Aniversario:
         </label>
-        <input id="config.birthdate" type="text" name="birthdate">
+        <input id="config.birthdate" type="text" name="birthdate" value="<?= date('d/m/Y', strtotime($userInfo->birthdate));?>">
 
         <label for="config.city">
             Cidade:
         </label>
-        <input id="config.city" type="text" name="city">
+        <input id="config.city" type="text" name="city" value="<?=$userInfo->city;?>">
 
         <label for="config.work">
             Trabalho:
         </label>
-        <input id="config.work" type="text" name="work">
+        <input id="config.work" type="text" name="work" value="<?=$userInfo->work;?>">
 
         <label for="config.password">
             Nova Senha:
@@ -72,6 +74,15 @@
  
 </section>
 
+<script src="https://unpkg.com/imask"></script>
+<script>
+    IMask(
+        document.getElementById("config.birthdate"),
+        {
+            mask:'00/00/0000'
+        }
+    )
+</script>
 
 <?php
     require 'partials/footer.php';

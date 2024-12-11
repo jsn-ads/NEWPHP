@@ -493,6 +493,18 @@ header .head-side {
     padding: 7px 0;
 }
 
+.config-form .mini-avatar{
+    margin: 2px 0;
+    width: 100px;
+    height: 100px;
+}
+
+.config-form .mini-cover{
+    margin: 2px 0;
+    width: 250px;
+    height: 100px;
+}
+
 .button{
     width: 100px;
     height: 30px;
