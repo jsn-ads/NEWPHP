@@ -12,7 +12,6 @@
 ?>
 
 <section class="feed mt-10">
-
     
     <h1>Configurações</h1>
 
@@ -70,7 +69,6 @@
         <button class="button">Salvar</button>
     
     </form>
-
  
 </section>
 
